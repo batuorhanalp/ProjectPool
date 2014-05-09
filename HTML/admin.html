@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<!-- Header -->
 <div class="header">
 	<div class="inner-wrapper">
 		<div class="logo"></div>		
@@ -22,6 +23,9 @@
 		</div>
 	</div>
 </div>	
+<!-- Header END -->
+
+<!-- Search -->
 <div class="search">
 	<div class="inner-wrapper">
 		<div class="left">
@@ -31,9 +35,42 @@
 			<a href="#" title=""></a>
 		</div>
 	</div>	
+	<!-- Search Detail -->
+	<div class="detail">
+		<form action="admin_submit" method="get" accept-charset="utf-8">
+			<div class="row">
+				<select>
+					<option value="">Sunulan Marka</option>
+				</select>
+				<select>
+					<option value="">Satılan Marka</option>
+				</select>
+				<select>
+					<option value="">Kategori</option>
+				</select>
+				<select>
+					<option value="">Bütçe Aralığı</option>
+				</select>
+			</div>
+			<div class="row">
+				<input type="text" name="" value="" placeholder="">
+				<input type="text" name="" value="" placeholder="">
+			</div>
+			<div class="row">
+				<input type="text" name="" value="" placeholder="+include; -exclude" class="keys">
+				<input type="submit" name="" value="GETİR" placeholder="">
+			</div>
+		</form>
+		<a href="#" title="Kapat" class="close"></a>
+	</div>	
+	<!-- Search Detail END -->
 </div>	
+<!-- Search END-->
+
+<!-- Content -->
 <div class="content">
 	<div class="inner-wrapper">
+		<!-- Sub Menu -->
 		<div class="sub-menu">
 			<div class="top">
 				<a href="#" title="" class="active">FİKİRLER</a>
@@ -49,9 +86,12 @@
 			</div>
 			<div class="indicator"></div>
 		</div>	
+		<!-- Sub Menu END -->
 		<div class="warning">
 			<span>!</span> 3 öğenin silme işlemi tamamlandı. <a href="#" title="">Geri al</a>
 		</div>
+
+		<!-- Projects -->
 		<table class="grid">
 			<tr>
 				<th colspan="2">Fikir adı</th>
@@ -61,7 +101,7 @@
 				<th colspan="1">Bütçe aralığı</th>
 				<th colspan="1">Tarih</th>
 			</tr>
-			<!-- One project -->
+			<!-- One Project -->
 			<tr class="title">
 				<td colspan="2">Nesine.com</td>
 				<td colspan="1">Nesine.com, Bilyoner</td>
@@ -81,7 +121,7 @@
 				</td>
 			</tr>
 			<tr class="space"><td colspan="7"></td></tr>
-			<!-- Pne project END -->
+			<!-- One Project END -->
 
 			<tr class="title">
 				<td colspan="2">Nesine.com</td>
@@ -163,8 +203,31 @@
 			</tr>
 			<tr class="space"><td colspan="7"></td></tr>
 		</table>
+		<!-- Projects END-->
+
+		<!-- Paging -->
+		<div class="paging">
+			<a href="#" title="İlk sayfa" class="first">&lt;</a>
+			<a href="#" title="İlk sayfa" class="number">1</a>
+			<a href="#" title="İlk sayfa" class="number active">2</a>
+			<a href="#" title="İlk sayfa" class="number">3</a>
+			<a href="#" title="İlk sayfa" class="number">4</a>
+			<a href="#" title="İlk sayfa" class="number">5</a>
+			<span>...</span>
+			<a href="#" title="İlk sayfa" class="number">56</a>
+			<a href="#" title="İlk sayfa" class="last">&gt;</a>
+		</div>
+		<!-- Paging END -->
+
+		<a href="#" title="" class="roll-back">Seçili projeleri sil</a>
 	</div>
 </div>
+<!-- Content END -->
 
+<!-- Footer -->
+<div class="footer">
+	&nbsp;
+</div>
+<!-- Footer END -->
 </body>
 </html>
