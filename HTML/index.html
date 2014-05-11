@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Project Pool - Clients</title>
+	<title>Project Pool - Projects</title>
 	<meta charset="UTF-8" />
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/jquery.js" type="text/javascript"></script>
-	<script src="js/scripts.js" type="text/javascript"></script>
+	<script src="js/index.js" type="text/javascript"></script>
 </head>
 <body>
 <!-- Header -->
@@ -20,7 +20,7 @@
 			<div class="row">
 				<a href="logout.html" title="" class="logout">ÇIKIŞ</a>
 				<a href="add-project.html" title="" class="new">YENİ FİKİR</a>
-				<a href="index.html" title="" class="user">KULLANICI PANELİ</a>
+				<a href="admin.html" title="" class="user">ADMIN PANELİ</a>
 			</div>
 		</div>
 	</div>
@@ -75,87 +75,61 @@
 		<!-- Sub Menu -->
 		<div class="sub-menu">
 			<div class="top">
-				<a href="admin.html" title="">FİKİRLER</a>
+				<a href="admin.html" title="" class="active">FİKİRLER</a>
 				<span class="seperator">|</span>
-				<a href="clients.html" title="" class="active">MARKALAR</a>
+				<a href="clients.html" title="">MARKALAR</a>
 				<span class="seperator">|</span>
 				<a href="users.html" title="">KULLANICILAR</a>
 				<span class="seperator">|</span>
 				<a href="settings.html" title="">AYARLAR</a>
 				<div class="right">
-					<a href="add-client.html" title="" class="new">YENİ MARKA</a>
+					<a href="add-project.html" title="" class="new">YENİ FİKİR</a>
 				</div>
 			</div>
-			<div class="indicator clients"></div>
+			<div class="indicator projects"></div>
 		</div>	
 		<!-- Sub Menu END -->
-		<div class="warning">
-			<span>!</span> 3 öğenin silme işlemi tamamlandı. <a href="#" title="">Geri al</a>
-		</div>
 
 		<!-- Projects -->
 		<table class="grid">
+			<tr>
+				<th colspan="2">Fikir adı</th>
+				<th colspan="1">Sunulan Markalar</th>
+				<th colspan="1">Satılan Markalar</th>
+				<th colspan="1">Kategoriler</th>
+				<th colspan="1">Bütçe aralığı</th>
+				<th colspan="1">Tarih</th>
+			</tr>
 			<!-- One Project -->
+			<tr class="title">
+				<td colspan="2">Nesine.com</td>
+				<td colspan="1">Nesine.com, Bilyoner</td>
+				<td colspan="1">Nesine.com</td>
+				<td colspan="1">Mobil Uygulama</td>
+				<td colspan="1">$0 - $1000</td>
+				<td colspan="1">25.04.2014</td>
+			</tr>
 			<tr class="description">
 				<td colspan="7">
-					<div class="buttons">
-						<input type="checkbox" id="chck01" />
-						<a href="#" title="Güncelle" class="edit"></a>
-						<a href="#" title="Sil" class="delete"></a>	
+					<div class="text long">
+						<div class="left">
+							<span>Twitter entegrasyonlu, kullanıcıların #nesinecom hastag'ini kullanarak tweet atarak yarıştığı kampanya.</span>
+							<span class="detail">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt entum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim. Erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</span>
+						</div>
+						<div class="right">
+							<a href="#" class="expand" title="Proje detayı"></a>
+							<a href="#" class="settings" title=""></a>
+							<div class="settingsMenu">
+								<a href="#" title="" class="edit">Fikri düzenle</a>
+								<span></span>
+								<a href="#" title="" class="delete">Fikri sil</a>
+							</div>
+						</div>
 					</div>
-					<div class="text">Marka adı</div>
 				</td>
 			</tr>
 			<tr class="space"><td colspan="7"></td></tr>
 			<!-- One Project END -->
-
-			<tr class="description">
-				<td colspan="7">
-					<div class="buttons">
-						<input type="checkbox" id="chck02" />
-						<a href="#" title="Güncelle" class="edit"></a>
-						<a href="#" title="Sil" class="delete"></a>	
-					</div>
-					<div class="text">Marka adı</div>
-				</td>
-			</tr>
-			<tr class="space"><td colspan="7"></td></tr>
-
-			<tr class="description">
-				<td colspan="7">
-					<div class="buttons">
-						<input type="checkbox" id="chck03" />
-						<a href="#" title="Güncelle" class="edit"></a>
-						<a href="#" title="Sil" class="delete"></a>	
-					</div>
-					<div class="text">Marka adı</div>
-				</td>
-			</tr>
-			<tr class="space"><td colspan="7"></td></tr>
-
-			<tr class="description">
-				<td colspan="7">
-					<div class="buttons">
-						<input type="checkbox" id="chck04" />
-						<a href="#" title="Güncelle" class="edit"></a>
-						<a href="#" title="Sil" class="delete"></a>	
-					</div>
-					<div class="text">Marka adı</div>
-				</td>
-			</tr>
-			<tr class="space"><td colspan="7"></td></tr>
-
-			<tr class="description">
-				<td colspan="7">
-					<div class="buttons">
-						<input type="checkbox" id="chck05" />
-						<a href="#" title="Güncelle" class="edit"></a>
-						<a href="#" title="Sil" class="delete"></a>	
-					</div>
-					<div class="text">Marka adı</div>
-				</td>
-			</tr>
-			<tr class="space"><td colspan="7"></td></tr>
 		</table>
 		<!-- Projects END-->
 
@@ -172,8 +146,6 @@
 			<a href="#" title="İlk sayfa" class="last">&gt;</a>
 		</div>
 		<!-- Paging END -->
-
-		<a href="#" title="" class="roll-back">Seçili projeleri sil</a>
 	</div>
 </div>
 <!-- Content END -->
