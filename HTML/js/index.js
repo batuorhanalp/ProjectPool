@@ -7,6 +7,8 @@ $(function(){
 				$(parentObject).find('.right').height(65);
 				$(parentObject).find('.settings').css("display", "none");
 				$(event.target).removeClass('expanded');
+				$(parentObject).find('.settingsMenu').css("display", "none");
+				$(parentObject).find('.settings').removeClass('opened');
 			});
 		}else{
 			$(detail).show(0, function() {
@@ -19,7 +21,6 @@ $(function(){
 	$('.settings').click(function(event) {
 		var parentObject = $(event.target).parent().parent();
 		if($(event.target).hasClass('opened')){
-			$(parentObject).find('.right').height(65);
 			$(parentObject).find('.settingsMenu').css("display", "none");
 			$(event.target).removeClass('opened');
 		}else{
