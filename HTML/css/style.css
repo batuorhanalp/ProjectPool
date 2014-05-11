@@ -2,7 +2,9 @@ html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockqu
 body{background: #fff;font-family: 'Source Sans Pro', sans-serif;}
 
 /*items*/
-select, input {padding: 10px;width: 211px;margin-right: 10px; border: 1px solid #ffd018;outline: none;}
+select, input, textarea {padding: 10px;width: 155px;margin-right: 10px; border: 1px solid #ffd018;outline: none;}
+input[type=checkbox] {width: 15px;}
+input[type=submit], input[type=button] {background: #ffd018;color: #fff;font-weight: bold;}
 /* Login */
 body.login{background: #ffd018;}
 .login { width: 460; height: 520px;margin: auto; display: block;}
@@ -29,7 +31,7 @@ body.login{background: #ffd018;}
 .search .right a {width: 72px;height: 72px;display: block;background: url(../images/search-detail.png)}
 
 /* Search detail */
-.search .detail {width: 938px;display: block;position: relative;z-index: 100;border: 1px solid #ffd018;top: 72px;margin: auto;height: 280px;background: #fff;border-bottom: 3px solid #ffd018;padding-left: 20px;}
+.search .detail {width: 938px;position: relative;z-index: 100;border: 1px solid #ffd018;top: 72px;margin: auto;height: 280px;background: #fff;border-bottom: 3px solid #ffd018;padding-left: 20px;display: none;}
 .search .detail form {width: 100%;display: block;float: left;height: 196px;margin-top: -47px;}
 .search .detail .row {width: 100%;margin-top: 20px;display: block;}
 .search .detail .keys {width: 638px;}
@@ -47,7 +49,9 @@ body.login{background: #ffd018;}
 .content .sub-menu .right a {color: #fff;padding-left: 33px;height: 26px;line-height: 26px;margin-top: 12px;}
 .content .sub-menu .top {width: 100%;height: 50px;background: #ffd018}
 .content .sub-menu .indicator {background:#fff url(../images/indicator.png) no-repeat 37px 0px;display:block;height:11px;}
-
+.content .sub-menu .indicator.clients{background-position: 148px 0;}
+.content .sub-menu .indicator.users{background-position: 284px 0;}
+.content .sub-menu .indicator.settings{background-position: 407px 0;}
 /*Warning */
 .content .warning {display: block;width: 100%;font-size: 14px;margin-left: 20px;line-height: 20px;margin-top: 20px;}
 .content .warning span {width: 20px;height: 20px;color: #fff;line-height: 20px;text-align: center;background: #ffd018;display: block;float: left;margin-right: 5px;}
@@ -55,13 +59,13 @@ body.login{background: #ffd018;}
 
 /*Grid*/
 .grid {font-size: 15px;margin-top: 10px;display: block; }
-.grid th {color:#ffd018;font-weight: 600;min-width:161px;line-height:50px; }
+.grid th {color:#ffd018;font-weight: 600;min-width:160px;line-height:50px; }
 .grid .title {color:#fff;font-weight: 600;background: #6b6b6b;line-height: 65px;margin-top: 20px; }
 .grid .title td {text-align: center;}
 .grid .description {line-height: 38px;text-align: left;width: 100%;}
 .grid .description .buttons {background: #f8f8f8;width: 23px; height: 66px; line-height: 22px; display: block;background: #ffd018;margin-top: 1px;padding-left: 2px; float: left;}
 .grid .description .buttons checkbox, .grid .description .buttons a { width: 20px;height: 22px;display: block;} 
-.grid .description .text {width: 911px; padding: 10px; display: block;float: left;background: #f8f8f8;line-height: 47px;padding-left: 20px;}
+.grid .description .text { padding: 10px; display: block;float: left;background: #f8f8f8;line-height: 47px;padding-left: 20px;width: 905px;}
 .grid .space {width: 100%;height: 20px;display: block;}
 
 /*Paging*/
@@ -77,6 +81,16 @@ body.login{background: #ffd018;}
 /*Footer*/
 .footer {width: 100%;height: 100px;display: block;float: left;}
 
+/*Settings*/
+.content .inner-wrapper .row { width: 100%; display: block; margin-top: 20px; float: left; margin-left: 20px;;}
+.content .inner-wrapper .row .title {width: 172px;display: block; line-height: 30px;font-size: 16px;color: #464646;float: left;}
+.content .inner-wrapper .row .elements {width: 456px; display: block; line-height: 30px;font-size: 15px;color: #464646;float: left;}
+.content .inner-wrapper .row .elements input, .content .inner-wrapper .row .elements select, .content .inner-wrapper .row .elements textarea  { float: left; width: 320px;}
+.content .inner-wrapper .row .elements input[type=checkbox] {width: 15px;}
+.content .inner-wrapper .row .elements label {float: left;line-height: 19px;margin-right: 20px;width: 165px;}
+.content .inner-wrapper .row .elements .big {width: 450px;height: 130px;}
+.content .inner-wrapper .row .roll-back {margin-top: 20px; float:left;}
+.content .inner-wrapper br {clear: both;}
 /* links */
 .user {background: url(../images/login-textfield.png) no-repeat;}
 .new{background: url(../images/icon-plus.png) no-repeat!important;}
@@ -85,3 +99,6 @@ body.login{background: #ffd018;}
 .logout:hover {background-position: 0 -39px!important;}
 .edit{background: url(../images/table-buttons.png) 4px -19px no-repeat;}
 .delete{background: url(../images/table-buttons.png) 4px -41px no-repeat;}
+
+/*General*/
+.left { float: left;}
