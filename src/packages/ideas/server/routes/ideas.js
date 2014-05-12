@@ -1,7 +1,13 @@
 'use strict';
 
+var ideas = require('../controllers/ideas');
+
 // The Package is past automatically as first parameter
 module.exports = function(Ideas, app, auth, database) {
+
+    app.route('/ideas')
+        .get(ideas.all)
+        .post(ideas.create);
 
     app.get('/ideas/example/anyone', function(req, res, next) {
         res.send('Anyone can access this');
