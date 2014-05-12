@@ -32,3 +32,29 @@ BrandSchema.path('name').validate(function(name) {
 
 
 mongoose.model('Brand', BrandSchema);
+
+
+/**
+ * category schema
+ */
+var CategorySchema = new Schema({        
+    name: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+
+/**
+ * validations
+ */
+CategorySchema.path('name').validate(function(name) {
+    return name.length;
+}, 'Kategori ismi boş bırakılamaz.');
+
+mongoose.model('Category', CategorySchema);

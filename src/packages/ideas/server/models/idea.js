@@ -30,9 +30,9 @@ var IdeaSchema = new Schema({
         default: '',
         trim: true
     },
-    //offerredBrands: [BrandSchema],
-    //dealtBrands: [BrandSchema],
-    //categories: [CategorySchema],
+    offerredBrands: [{ type: Schema.ObjectId, ref: 'Brand' }],
+    dealtBrands: [{ type: Schema.ObjectId, ref: 'Brand' }],
+    categories: [{ type: Schema.ObjectId, ref: 'Category' }],
     budget: {
         type: Schema.ObjectId,
         ref: 'Budget',
