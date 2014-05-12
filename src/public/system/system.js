@@ -2,38 +2,36 @@
 
 angular.module('mean.system', ['mean.controllers.login','mean-factory-interceptor']);
 
-/*
-$(function(){
-	$('.expand').click(function(event) {
-		var parentObject = $(event.target).parent().parent();
-		var detail = $(parentObject).find('.detail');
-		if($(event.target).hasClass('expanded')){
-			$(detail).hide(0, function() {
-				$(parentObject).find('.right').height(65);
-				$(parentObject).find('.settings').css('display', 'none');
-				$(event.target).removeClass('expanded');
-				$(parentObject).find('.settingsMenu').css('display', 'none');
-				$(parentObject).find('.settings').removeClass('opened');
+angular.element(function(){
+	angular.element('.expand').click(function(event) {
+		var parentObject = angular.element(event.target).parent().parent();
+		var detail = angular.element(parentObject).find('.detail');
+		if(angular.element(event.target).hasClass('expanded')){
+			angular.element(detail).hide(0, function() {
+				angular.element(parentObject).find('.right').height(65);
+				angular.element(parentObject).find('.settings').css('display', 'none');
+				angular.element(event.target).removeClass('expanded');
+				angular.element(parentObject).find('.settingsMenu').css('display', 'none');
+				angular.element(parentObject).find('.settings').removeClass('opened');
 			});
 		}else{
-			$(detail).show(0, function() {
-				$(parentObject).find('.right').height(parentObject.height());
-				$(parentObject).find('.settings').css('display', 'block');
-				$(event.target).addClass('expanded');
+			angular.element(detail).show(0, function() {
+				angular.element(parentObject).find('.right').height(parentObject.height());
+				angular.element(parentObject).find('.settings').css('display', 'block');
+				angular.element(event.target).addClass('expanded');
 			});
 		}
 	});
-	$('.settings').click(function(event) {
-		var parentObject = $(event.target).parent().parent();
-		if($(event.target).hasClass('opened')){
-			$(parentObject).find('.settingsMenu').css('display', 'none');
-			$(event.target).removeClass('opened');
+	angular.element('.settings').click(function(event) {
+		var parentObject = angular.element(event.target).parent().parent();
+		if(angular.element(event.target).hasClass('opened')){
+			angular.element(parentObject).find('.settingsMenu').css('display', 'none');
+			angular.element(event.target).removeClass('opened');
 		}else{
-			$(parentObject).find('.right').height(parentObject.height());
-			$(parentObject).find('.settingsMenu').css('margin-top', $(parentObject).find('.right').height() + 'px');
-			$(parentObject).find('.settingsMenu').css('display', 'block');
-			$(event.target).addClass('opened');
+			angular.element(parentObject).find('.right').height(parentObject.height());
+			angular.element(parentObject).find('.settingsMenu').css('margin-top', angular.element(parentObject).find('.right').height() + 'px');
+			angular.element(parentObject).find('.settingsMenu').css('display', 'block');
+			angular.element(event.target).addClass('opened');
 		}
 	});
 });
-*/
