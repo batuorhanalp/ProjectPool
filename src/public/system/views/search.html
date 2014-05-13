@@ -1,0 +1,41 @@
+<!-- Search -->
+<div class="search" data-ng-controller="HeaderController" data-ng-show="global.authenticated">
+    <div class="inner-wrapper">
+        <div class="left">
+            <input type="text" name="" value="" placeholder="Marka adı, fikir adı, fikir detayı ara..">
+        </div>
+        <div class="right">
+            <a href="#" title="Detaylı arama"></a>
+        </div>
+    </div>	
+    <!-- Search Detail -->
+    <div class="detail">
+        <form action="admin_submit" method="get" accept-charset="utf-8">
+            <div class="row">
+                <select>
+                    <option value="">Sunulan Marka</option>
+                </select>
+                <select>
+                    <option value="">Satılan Marka</option>
+                </select>
+                <select>
+                    <option value="">Kategori</option>
+                </select>
+                <select>
+                    <option value="">Bütçe Aralığı</option>
+                </select>
+            </div>
+            <div class="row">
+                <input type="text" name="" value="" placeholder="">
+                <input type="text" name="" value="" placeholder="">
+            </div>
+            <div class="row">
+                <input type="text" name="" value="" placeholder="+include; -exclude" class="keys">
+                <input type="submit" name="" value="GETİR" placeholder="">
+            </div>
+        </form>
+        <a href="#" title="Kapat" class="close"></a>
+    </div>	
+    <!-- Search Detail END -->
+</div>	
+<!-- Search END-->

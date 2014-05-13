@@ -3,7 +3,8 @@
 {% include '../includes/head.html' %}
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/public/system/views/header.html'" data-role="navigation"></div>
+    <div class="header" data-ng-include="'/public/system/views/header.html'" data-role="navigation"></div>
+    <div data-ng-include="'/public/system/views/search.html'"></div>
     <section class="content">
         <section class="container inner-wrapper">
             {% block content %}{% endblock %}
