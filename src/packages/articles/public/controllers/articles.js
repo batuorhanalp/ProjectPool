@@ -4,6 +4,8 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
     function($scope, $stateParams, $location, Global, Articles) {
         $scope.global = Global;
 
+        console.log('articles controller', Articles, $stateParams);
+
         $scope.create = function() {
             var article = new Articles({
                 title: this.title,
