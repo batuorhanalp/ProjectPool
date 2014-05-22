@@ -20,5 +20,18 @@ Use following to set up the project
 Running The Project
 ===================
   
+Make sure that mongodb is running.
+
+    mongod
+
+To run the project issue following commands:
+
     cd project_pool
     python manage.py runserver_plus
+
+Visit `http://localhost:8000/` on your browser. You have run the project in development environment.
+
+Deployment
+==========
+
+@Todo
