@@ -19,5 +19,6 @@ Use following to set up the project
 
 Running The Project
 ===================
-
-  python manage.py runserver_plus
+  
+    cd project_pool
+    python manage.py runserver_plus
