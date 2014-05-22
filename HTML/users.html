@@ -41,26 +41,80 @@
 	<div class="detail">
 		<form action="admin_submit" method="get" accept-charset="utf-8">
 			<div class="row">
-				<select>
-					<option value="">Sunulan Marka</option>
-				</select>
-				<select>
-					<option value="">Satılan Marka</option>
-				</select>
-				<select>
-					<option value="">Kategori</option>
-				</select>
-				<select>
-					<option value="">Bütçe Aralığı</option>
-				</select>
+				<div id="ddlBrands" class="select">
+					<span>Sunulan Marka</span>
+					<div class="list">
+						<div class="scroller">
+							<div class="check"><input type="checkbox" data-id="1" id="chckBrand01"/><label for="chckBrand01">Marka 01</label></div>
+							<div class="check"><input type="checkbox" data-id="2" id="chckBrand02"/><label for="chckBrand02">Marka 02</label></div>
+							<div class="check"><input type="checkbox" data-id="3" id="chckBrand03"/><label for="chckBrand03">Marka 03</label></div>
+							<div class="check"><input type="checkbox" data-id="4" id="chckBrand04"/><label for="chckBrand04">Marka 04</label></div>
+							<div class="check"><input type="checkbox" data-id="5" id="chckBrand05"/><label for="chckBrand05">Marka 05</label></div>
+							<div class="check"><input type="checkbox" data-id="6" id="chckBrand06"/><label for="chckBrand06">Marka 06</label></div>
+							<div class="check"><input type="checkbox" data-id="7" id="chckBrand07"/><label for="chckBrand07">Marka 07</label></div>
+							<div class="check"><input type="checkbox" data-id="8" id="chckBrand08"/><label for="chckBrand08">Marka 08</label></div>
+							<div class="check"><input type="checkbox" data-id="9" id="chckBrand09"/><label for="chckBrand09">Marka 09</label></div>
+						</div>
+					</div>
+				</div>
+				
+				<div id="ddlBrandsSold" class="select">
+					<span>Satılan Marka</span>
+					<div class="list">
+						<div class="scroller">
+							<div class="check"><input type="checkbox" data-id="1" id="chckBrandSell01"/><label for="chckBrandSell01">Marka 01</label></div>
+							<div class="check"><input type="checkbox" data-id="2" id="chckBrandSell02"/><label for="chckBrandSell02">Marka 02</label></div>
+							<div class="check"><input type="checkbox" data-id="3" id="chckBrandSell03"/><label for="chckBrandSell03">Marka 03</label></div>
+							<div class="check"><input type="checkbox" data-id="4" id="chckBrandSell04"/><label for="chckBrandSell04">Marka 04</label></div>
+							<div class="check"><input type="checkbox" data-id="5" id="chckBrandSell05"/><label for="chckBrandSell05">Marka 05</label></div>
+							<div class="check"><input type="checkbox" data-id="6" id="chckBrandSell06"/><label for="chckBrandSell06">Marka 06</label></div>
+							<div class="check"><input type="checkbox" data-id="7" id="chckBrandSell07"/><label for="chckBrandSell07">Marka 07</label></div>
+							<div class="check"><input type="checkbox" data-id="8" id="chckBrandSell08"/><label for="chckBrandSell08">Marka 08</label></div>
+							<div class="check"><input type="checkbox" data-id="9" id="chckBrandSell09"/><label for="chckBrandSell09">Marka 09</label></div>
+						</div>
+					</div>
+				</div>
+
+				<div id="ddlCategories" class="select">
+					<span>Kategori</span>
+					<div class="list">
+						<div class="scroller">
+							<div class="check"><input type="checkbox" data-id="1" id="chckCategory01"/><label for="chckCategory01">Kategori 01</label></div>
+							<div class="check"><input type="checkbox" data-id="2" id="chckCategory02"/><label for="chckCategory02">Kategori 02</label></div>
+							<div class="check"><input type="checkbox" data-id="3" id="chckCategory03"/><label for="chckCategory03">Kategori 03</label></div>
+							<div class="check"><input type="checkbox" data-id="4" id="chckCategory04"/><label for="chckCategory04">Kategori 04</label></div>
+							<div class="check"><input type="checkbox" data-id="5" id="chckCategory05"/><label for="chckCategory05">Kategori 05</label></div>
+							<div class="check"><input type="checkbox" data-id="6" id="chckCategory06"/><label for="chckCategory06">Kategori 06</label></div>
+							<div class="check"><input type="checkbox" data-id="7" id="chckCategory07"/><label for="chckCategory07">Kategori 07</label></div>
+							<div class="check"><input type="checkbox" data-id="8" id="chckCategory08"/><label for="chckCategory08">Kategori 08</label></div>
+							<div class="check"><input type="checkbox" data-id="9" id="chckCategory09"/><label for="chckCategory09">Kategori 09</label></div>
+						</div>
+					</div>
+				</div>
+
+				<div id="ddlBudgets" class="select">
+					<span>Bütçe aralığı</span>
+					<div class="list">
+						<div class="scroller">
+							<div class="check"><input type="checkbox" data-id="1" id="chckBudget01"/><label for="chckBudget01">$1000 - $5000</label></div>
+							<div class="check"><input type="checkbox" data-id="2" id="chckBudget02"/><label for="chckBudget02">$5000 - $10000</label></div>
+							<div class="check"><input type="checkbox" data-id="3" id="chckBudget03"/><label for="chckBudget03">$10000 - $15000</label></div>
+							<div class="check"><input type="checkbox" data-id="4" id="chckBudget04"/><label for="chckBudget04">$15000 - $20000</label></div>
+							<div class="check"><input type="checkbox" data-id="5" id="chckBudget05"/><label for="chckBudget05">$20000 - $25000</label></div>
+							<div class="check"><input type="checkbox" data-id="6" id="chckBudget06"/><label for="chckBudget06">$25000 - $30000</label></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<input id="dtFirst" type="text" class="datepicker" name="" value="" placeholder="">
+				<input id="dtSecond" type="text" class="datepicker" name="" value="" placeholder="">
+				Tarihleri arasında
 			</div>
 			<div class="row">
-				<input type="text" name="" value="" placeholder="">
-				<input type="text" name="" value="" placeholder="">
-			</div>
-			<div class="row">
-				<input type="text" name="" value="" placeholder="+include; -exclude" class="keys">
-				<input type="submit" name="" value="GETİR" placeholder="">
+				<input id="txtDetail" type="text" name="" value="" placeholder="+include; -exclude" class="keys" />
+				<input id="bttnSearch" type="button" name="" value="GETİR" />
 			</div>
 		</form>
 		<a href="#" title="Kapat" class="close"></a>
