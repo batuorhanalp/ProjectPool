@@ -1,24 +1,12 @@
-{% extends 'auth.html' %}
+{% extends '../layouts/login.html' %}
 
 {% block auth %}
-    <form class="signin form-horizontal" action="/users/session" method="post">
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="email">Email</label>
-            <div class="col-md-8">
-                <input id="email" class="form-control" type="text" name="email" placeholder="Email">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="password">Password</label>
-            <div class="col-md-8">
-                <input id="password" class="form-control" type="password" name="password" placeholder="Password">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-4 col-md-8">
-                <button class="btn btn-primary" type="submit">Sign in</button>&nbsp;
-                or&nbsp;<a class="show-signup" href="/signup">Sign up</a>
-            </div>
-        </div>
+<div data-ng-controller="LoginCtrl">
+    <div class="alert alert-danger animated fadeIn" ng-show="loginerror">{{loginerror}}</div>
+    <form  ng-submit="login()"  class="textfield-wrapper" action="/users/session" method="post">
+        <input required type="email" name="email" value="" placeholder="EPOSTA ADRESİ" ng-model="user.email">
+        <input type="password" name="password" value="" placeholder="PAROLA" ng-model="user.password">
+        <input type="submit" name="" value="GİRİŞ">
     </form>
+</div>
 {% endblock %}
