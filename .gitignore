@@ -25,3 +25,23 @@ build/Release
 node_modules
 
 .DS_Store
+
+logs                   
+media
+*.pyc
+*.pyo
+.DS_Store
+venv
+*.db
+*.swp
+.ropeproject
+*_generated_media*
+tmp
+VERSION
+covhtml
+.coveragerc
+.noseids
+backup
+celerybeat*
+erl_crash.dump
+                       
