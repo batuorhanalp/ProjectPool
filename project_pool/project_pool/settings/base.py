@@ -45,6 +45,9 @@ INSTALLED_APPS = (
     # vendor apps
     'django_extensions',
     #'rest_framework',
+
+    # user apps
+    'pool',
 )
 
 MIDDLEWARE_CLASSES = (

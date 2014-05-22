@@ -16,3 +16,8 @@ Use following to set up the project
     virtualenv venv --distribute
     source venv/bin/activate
     pip install -r requirements/local.txt 
+
+Running The Project
+===================
+
+  python manage.py runserver_plus
