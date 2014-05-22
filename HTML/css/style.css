@@ -35,10 +35,10 @@ body.login{background: #ffd018;}
 .search .detail {width: 938px;position: relative;z-index: 100;border: 1px solid #ffd018;top: 72px;margin: auto;height: 280px;background: #fff;border-bottom: 3px solid #ffd018;padding-left: 20px;display: none;}
 .search .detail form {width: 100%;display: block;float: left;height: 196px;margin-top: -47px;}
 .search .detail .row {width: 100%;margin-top: 20px;display: block;cursor: pointer;height:42px;}
-.search .detail .row .datepicker {padding: 10px;width: 189px;margin-right: 10px;border: 1px solid #ffd018;outline: none;background: url(../images/calendar.png) 169px 0px no-repeat;height: 20px;}
+.search .detail .row .datepicker {padding: 10px;width: 189px;margin-right: 7px;border: 1px solid #ffd018;outline: none;background: url(../images/calendar.png) 169px 0px no-repeat;height: 20px;}
 .search .detail .row .select { width: 198px;border: 1px solid #ffd018;padding: 5px;height: 30px;overflow: hidden;background: url(../images/arrow.png) 168px 0px no-repeat;float:left;margin-right: 10px;}
-.search .detail .row .select span {height: 30px;padding: 11px;display: block;line-height: 13px;}
-.search .detail .row .select .list {display:none; width: 190px;height: 157px;background: #ffd018;position: absolute;margin: -16px -6px;padding: 10px 10px;overflow:hidden;}
+.search .detail .row .select span {height: 23px;padding: 11px;display: block;line-height: 14px;padding-bottom: 0px;}
+.search .detail .row .select .list {display:none; width: 190px;height: 157px;background: #ffd018;position: absolute;margin: 2px -6px;padding: 10px 10px;overflow:hidden;}
 .search .detail .row .select .list .scroller {height:147px;}
 .search .detail .row .select .list .scroller .check {width:175px;}
 .search .detail .row .select .list .scroller .check input[type=checkbox] {margin-top: 9px; float:left!important;display:block;}
