@@ -81,6 +81,6 @@ $(function(){
 			}
 		});
 		var data = {brands:brands,brandsSold:brandsSold,categories:categories,dtFirst:dtFirst,dtSecond:dtSecond,details:details};
-		var dataJson = JSON.stringify(data);
+		window.location = '/search?' + encodeURIComponent(JSON.stringify(data));
 	});
 });
