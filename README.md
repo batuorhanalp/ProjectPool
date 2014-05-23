@@ -26,6 +26,7 @@ Make sure that mongodb is running.
 
 To run the project issue following commands:
 
+    source venv/bin/activate
     cd project_pool
     python manage.py runserver_plus
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from datetime import datetime
+from django.utils import timezone
 from django.db import models
 from djangotoolbox.fields import (
     ListField,
@@ -32,6 +32,6 @@ class Idea(models.Model):
     dealtBrands = ListField(EmbeddedModelField('Brand'))
     categories = ListField(EmbeddedModelField('Category'))
     budget = EmbeddedModelField('Budget', null=True)
-    date = models.DateTimeField("Fikir Tarihi", blank=True, default=datetime.now)
+    date = models.DateTimeField("Fikir Tarihi", blank=True, default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
     #created_by = EmbeddedModelField('User')
