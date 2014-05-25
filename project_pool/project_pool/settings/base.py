@@ -19,11 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'kz%pdm+-(+cg3qs%t*(c=w+et_osfd5ljlu=@+(k@t$^ni-bpm'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = []
 
 ADMINS = (
@@ -59,6 +54,14 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or
+    # "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, 'templates'),
+)
+
 ROOT_URLCONF = 'project_pool.urls'
 
 # Internationalization
@@ -90,7 +93,11 @@ STATIC_URL = '/static/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(BASE_DIR, "compiled_static_files")
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"

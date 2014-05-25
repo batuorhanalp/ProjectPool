@@ -5,8 +5,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 INSTALLED_APPS += (
-    'django_extensions',
-    #'debug_toolbar',
+    'debug_toolbar',
     #'debug_toolbar_user_panel',
     'django_nose',
 )
@@ -46,10 +45,10 @@ DEBUG_TOOLBAR_PANELS = [
 ]
 
 DEBUG_TOOLBAR_CONFIG = {
-        'INTERCEPT_REDIRECTS': False,
-        #'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
-        #'EXTRA_SIGNALS': ['myproject.signals.MySignal'],
-        #'HIDE_DJANGO_SQL': False,
-        #'TAG': 'div',
-        #'ENABLE_STACKTRACES' : True,
+    'INTERCEPT_REDIRECTS': False,
+    #'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
+    #'EXTRA_SIGNALS': ['myproject.signals.MySignal'],
+    #'HIDE_DJANGO_SQL': False,
+    #'TAG': 'div',
+    #'ENABLE_STACKTRACES' : True,
 }

@@ -6,7 +6,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'project_pool.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    url(r'^ideas/', include('pool.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 )

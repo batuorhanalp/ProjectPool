@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Content -->
+<div class="content">
+	<div class="inner-wrapper">
+		<!-- Sub Menu -->
+		<div class="sub-menu">
+			<div class="top">
+				<a href="admin.html" title="" class="active">FİKİRLER</a>
+				<div class="right">
+					<a href="add-project.html" title="" class="new">YENİ FİKİR</a>
+				</div>
+			</div>
+			<div class="indicator projects"></div>
+		</div>	
+		<!-- Sub Menu END -->
+
+		<!-- Projects -->
+		<table class="grid">
+			<tr>
+				<th colspan="2">Fikir adı</th>
+				<th colspan="1">Sunulan Markalar</th>
+				<th colspan="1">Satılan Markalar</th>
+				<th colspan="1">Kategoriler</th>
+				<th colspan="1">Bütçe aralığı</th>
+				<th colspan="1">Tarih</th>
+			</tr>
+            {% for idea in ideas %}
+			<!-- One Project -->
+			<tr class="title">
+                <td colspan="2">{{ idea.name }}</td>
+                <td colspan="1">{{ idea.offerred_brands|join:", " }}</td>
+                <td colspan="1">{{ idea.dealt_brands|join:", " }}</td>
+                <td colspan="1">{{ idea.categories|join:", " }}</td>
+                <td colspan="1">${{ idea.budget.start|default:"0" }} - ${{ idea.budget.end|default:"0" }}</td>
+                <td colspan="1">{{ idea.date|date:"d.m.Y" }}</td>
+			</tr>
+			<tr class="description">
+				<td colspan="7">
+					<div class="text long">
+						<div class="left">
+							<span>Twitter entegrasyonlu, kullanıcıların #nesinecom hastag'ini kullanarak tweet atarak yarıştığı kampanya.</span>
+							<span class="detail">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim. Erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</span>
+						</div>
+						<div class="right">
+							<a class="expand" title="Proje detayı"></a>
+							<a class="settings" title=""></a>
+							<div class="settingsMenu">
+								<a title="" class="edit">Fikri düzenle</a>
+								<span></span>
+								<a title="" class="delete">Fikri sil</a>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr class="space"><td colspan="7"></td></tr>
+			<!-- One Project END -->
+            {% empty %}
+            <tr class="description">
+				<td colspan="7">
+					<div class="text long">
+                        No project ideas
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+		</table>
+		<!-- Projects END-->
+
+		<!-- Paging -->
+		<div class="paging">
+			<a href="#" title="İlk sayfa" class="first">&lt;</a>
+			<a href="#" title="İlk sayfa" class="number">1</a>
+			<a href="#" title="İlk sayfa" class="number active">2</a>
+			<a href="#" title="İlk sayfa" class="number">3</a>
+			<a href="#" title="İlk sayfa" class="number">4</a>
+			<a href="#" title="İlk sayfa" class="number">5</a>
+			<span>...</span>
+			<a href="#" title="İlk sayfa" class="number">56</a>
+			<a href="#" title="İlk sayfa" class="last">&gt;</a>
+		</div>
+		<!-- Paging END -->
+	</div>
+</div>
+<!-- Content END -->
+{% endblock %}
