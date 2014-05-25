@@ -44,4 +44,4 @@ covhtml
 backup
 celerybeat*
 erl_crash.dump
-                       
+compiled_static_files
