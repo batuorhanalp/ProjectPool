@@ -8,4 +8,8 @@ from models import (
 class IdeaList(ListView):
     model = Idea
     context_object_name = "ideas"
-    title = "Projects"
+    paginate_by = 2
+
+
+class IdeaDetail(DetailView):
+    model = Idea
