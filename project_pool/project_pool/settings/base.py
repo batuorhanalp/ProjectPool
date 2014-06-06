@@ -110,6 +110,7 @@ MEDIA_URL = '/uploads/'
 
 REDIRECT_FIELD_NAME = 's'
 LOGIN_URL = '/giris-yap'
+LOGIN_REDIRECT_URL = '/'
 
 ###################################
 # Rest Framework Settings         #
