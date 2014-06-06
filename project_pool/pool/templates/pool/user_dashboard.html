@@ -4,17 +4,7 @@
 <!-- Content -->
 <div class="content">
 	<div class="inner-wrapper">
-		<!-- Sub Menu -->
-		<div class="sub-menu">
-			<div class="top">
-				<a href="admin.html" title="" class="active">FİKİRLER</a>
-				<div class="right">
-					<a href="add-project.html" title="" class="new">YENİ FİKİR</a>
-				</div>
-			</div>
-			<div class="indicator projects"></div>
-		</div>	
-		<!-- Sub Menu END -->
+        {% include 'pool/cms/common/sub_menu_for_projects.html' with current_sub_page='projects' %}
 
 		<!-- Projects -->
 		<table class="grid">

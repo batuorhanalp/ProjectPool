@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load pool_tags %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="inner-wrapper">
+            {% include 'pool/cms/common/sub_menu_for_projects.html' with current_sub_page='creation' %}
+
+            <!-- Add Idea -->
+            <form action="{% url 'pool:cms_idea_creation' %}" method="POST">{% csrf_token %}
+                <div class="row">
+                    <div class="title">
+                        Fikir adı
+                    </div>
+                    <div class="elements">
+                        {{ form.name }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="title">
+                        Fikir özeti
+                    </div>
+                    <div class="elements">
+                        <textarea id="id_summary" maxlength="255" name="summary">{{ form.summary.value|default_if_none:"" }}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="title">
+                        Fikir detayı
+                    </div>
+                    <div class="elements">
+                        <textarea id="id_detail" name="detail" class="big">{{ form.detail.value|default_if_none:"" }}</textarea>
+                    </div>
+                </div>
+                {% get_brands as brands %}
+                <div class="row">
+                    <div class="title">
+                        Sunulan markalar
+                    </div>
+                    <div class="elements">
+                        {% for brand in brands.all %}
+                            <input type="checkbox" name="offerred_brands" id="chckMar{{ brand.id }}" value="{{ brand.id }}">
+                            <label for="chckMar{{ brand.id }}">{{ brand.name }}</label>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="title">
+                        Satılan markalar
+                    </div>
+                    <div class="elements">
+                        {% for brand in brands.all %}
+                            <input type="checkbox" name="dealt_brands" id="p_chckMar_{{ brand.id }}" value="{{ brand.id }}">
+                            <label for="p_chckMar_{{ brand.id }}">{{ brand.name }}</label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% get_categories as categories %}
+                <div class="row">
+                    <div class="title">
+                        Kategoriler
+                    </div>
+                    <div class="elements">
+                        {% for category in categories.all %}
+                            <input type="checkbox" name="categories" id="chckKat_{{ category.id }}" value="{{ category.id }}">
+                            <label for="chckKat_{{ category.id }}">{{ category.name }}</label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% get_budgets as budgets %}
+                <div class="row">
+                    <div class="title">
+                        Bütçe aralığı
+                    </div>
+                    <div class="elements">
+                        <select name="budget">
+                            <option value="" selected="" disabled="disabled">Seçiniz</option>
+                            {% for budget in budgets.all %}
+                                <option value="{{ budget.id }}">{{ budget }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="title">&nbsp;</div>
+                    <div class="elements">
+                        <input type="submit" name="" value="FİKRİ EKLE">
+                    </div>
+                </div>
+            </form>
+            <!-- Add Idea END -->
+        </div>
+    </div>
+
+{% endblock %}

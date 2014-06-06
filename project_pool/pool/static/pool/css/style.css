@@ -61,6 +61,7 @@ body.login{background: #ffd018;}
 .content .sub-menu .indicator.clients{background-position: 148px 0;}
 .content .sub-menu .indicator.users{background-position: 284px 0;}
 .content .sub-menu .indicator.settings{background-position: 407px 0;}
+.content .sub-menu .indicator.creation{background-position: 892px 0;}
 /*Warning */
 .content .warning {display: block;width: 100%;font-size: 14px;margin-left: 20px;line-height: 20px;margin-top: 20px;}
 .content .warning span {width: 20px;height: 20px;color: #fff;line-height: 20px;text-align: center;background: #ffd018;display: block;float: left;margin-right: 5px;}
