@@ -108,6 +108,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = '/uploads/'
 
+REDIRECT_FIELD_NAME = 's'
+LOGIN_URL = '/giris-yap'
+
 ###################################
 # Rest Framework Settings         #
 ###################################
