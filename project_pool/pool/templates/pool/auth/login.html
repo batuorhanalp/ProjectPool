@@ -8,13 +8,13 @@
 	<link rel="stylesheet" href="{% static 'pool/css/style.css' %}">
 </head>
 <body class="login">
-<div class="login">
-	<div class="logo"></div>
-	<form action="{% url 'auth_login' %}" method="post" class="textfield-wrapper">{% csrf_token %}
-		<input type="text" name="username" value="" placeholder="EPOSTA ADRESİ">
-		<input type="password" name="password" value="" placeholder="PAROLA">
-		<input type="submit" name="" value="GİRİŞ">
-	</form>
-</div>
+    <div class="login">
+        <div class="logo"></div>
+        <form action="{% url 'auth_login' %}" method="post" class="textfield-wrapper">{% csrf_token %}
+            <input type="text" name="username" value="" placeholder="EPOSTA ADRESİ">
+            <input type="password" name="password" value="" placeholder="PAROLA">
+            <input type="submit" name="" value="GİRİŞ">
+        </form>
+    </div>
 </body>
 </html>

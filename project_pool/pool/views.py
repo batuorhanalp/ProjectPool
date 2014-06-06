@@ -1,7 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from models import (
-    Idea
-)
+from models import *
 
 
 class IdeaDetail(DetailView):
@@ -33,7 +31,12 @@ class CMSIdeaList(UserDashboard):
     u"""
     CMS/10-Karbonat Intranet - CMS_0000_Page 1 - Idea
     """
-    pass
+    template_name = 'pool/cms/idea_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CMSIdeaList, self).get_context_data(**kwargs)
+        context['in_cms'] = True
+        return context
 
 
 class CMSIdeaCreation(CreateView):
@@ -45,14 +48,17 @@ class CMSIdeaCreation(CreateView):
     template_name = 'pool/cms/idea_creation.html'
 
 
-class CMSClientList(ListView):
+class CMSBrandList(ListView):
     u"""
     CMS/12-Karbonat Intranet - CMS_0001_Page 2 - Clients
     """
-    pass
+    model = Brand
+    context_object_name = 'brands'
+    paginate_by = 2
+    template_name = 'pool/cms/brand_list.html'
 
 
-class CMSClientCreation(CreateView):
+class CMSBrandCreation(CreateView):
     u"""
     CMS/13-Karbonat Intranet - CMS_0004_Page 2 - Client Panel
     """

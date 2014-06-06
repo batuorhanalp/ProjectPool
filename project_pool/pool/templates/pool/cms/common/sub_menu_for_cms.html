@@ -1,0 +1,28 @@
+<!-- Sub Menu -->
+<div class="sub-menu">
+    <div class="top">
+        <a href="{% url 'pool:cms_idea_list' %}" title=""{% if 'ideas' == current_sub_page %} class="active"{% endif %}>FİKİRLER</a>
+            <span class="seperator">|</span>
+        <a href="{% url 'pool:cms_brand_list' %}" title=""{% if 'brands' == current_sub_page %} class="active"{% endif %}>MARKALAR</a>
+            <span class="seperator">|</span>
+        <a href="TODO" title=""{% if 'users' == current_sub_page %} class="active"{% endif %}>KULLANICILAR</a>
+            <span class="seperator">|</span>
+        <a href="TODO" title=""{% if 'settings' == current_sub_page %} class="active"{% endif %}>AYARLAR</a>
+        {% if 'ideas' == current_sub_page %}
+            <div class="right">
+                <a href="{% url 'pool:cms_idea_creation' %}" title="" class="new">YENİ FİKİR</a>
+            </div>
+        {% elif 'brands' == current_sub_page %}
+            <div class="right">
+                <a href="TODO" title="" class="new">YENİ MARKA</a>
+            </div>
+        {% elif 'users' == current_sub_page %}
+            <div class="right">
+                <a href="TODO" title="" class="new">YENİ KULLANICI</a>
+            </div>
+        {% elif 'settings' == current_sub_page %}
+        {% endif %}
+    </div>
+    <div class="indicator {{ current_sub_page }}"></div>
+</div>
+<!-- Sub Menu END -->

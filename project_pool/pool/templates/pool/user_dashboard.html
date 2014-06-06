@@ -4,7 +4,11 @@
 <!-- Content -->
 <div class="content">
 	<div class="inner-wrapper">
-        {% include 'pool/cms/common/sub_menu_for_projects.html' with current_sub_page='projects' %}
+        {% if in_cms %}
+            {% include 'pool/cms/common/sub_menu_for_cms.html' with current_sub_page='ideas' %}
+        {% else %}
+            {% include 'pool/cms/common/sub_menu_for_projects.html' with current_sub_page='ideas' %}
+        {% endif %}
 
 		<!-- Projects -->
 		<table class="grid">
@@ -17,67 +21,74 @@
 				<th colspan="1">Tarih</th>
 			</tr>
             {% for idea in ideas %}
-			<!-- One Project -->
-			<tr class="title">
-                <td colspan="2">{{ idea.name }}</td>
-                <td colspan="1">{{ idea.offerred_brands|join:", " }}</td>
-                <td colspan="1">{{ idea.dealt_brands|join:", " }}</td>
-                <td colspan="1">{{ idea.categories|join:", " }}</td>
-                <td colspan="1">${{ idea.budget.start|default:"0" }} - ${{ idea.budget.end|default:"0" }}</td>
-                <td colspan="1">{{ idea.date|date:"d.m.Y" }}</td>
-			</tr>
-			<tr class="description">
-				<td colspan="7">
-					<div class="text long">
-						<div class="left">
-                            <span>{{ idea.summary }}</span>
-                            <span class="detail">{{ idea.detail }}</span>
-						</div>
-						<div class="right">
-							<a class="expand" title="Proje detayı"></a>
-							<a class="settings" title=""></a>
-							<div class="settingsMenu">
-								<a title="" class="edit">Fikri düzenle</a>
-								<span></span>
-								<a title="" class="delete">Fikri sil</a>
-							</div>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr class="space"><td colspan="7"></td></tr>
+                <!-- One Project -->
+                <tr class="title">
+                    <td colspan="2">{{ idea.name }}</td>
+                    <td colspan="1">{{ idea.offerred_brands|join:", " }}</td>
+                    <td colspan="1">{{ idea.dealt_brands|join:", " }}</td>
+                    <td colspan="1">{{ idea.categories|join:", " }}</td>
+                    <td colspan="1">{{ idea.budget }}</td>
+                    <td colspan="1">{{ idea.date|date:"d.m.Y" }}</td>
+                </tr>
+                <tr class="description">
+                    <td colspan="7">
+                        {% if in_cms %}
+                            <div class="buttons">
+                                <input type="checkbox" id="chck_{{ idea.id }}">
+                                <a href="#TODO" title="Güncelle" class="edit"></a>
+                                <a href="#TODO" title="Sil" class="delete"></a>
+                            </div>
+                        {% endif %}
+                        <div class="text long">
+                            <div class="left">
+                                <span>{{ idea.summary }}</span>
+                                <span class="detail">{{ idea.detail }}</span>
+                            </div>
+                            <div class="right">
+                                <a class="expand" title="Proje detayı"></a>
+                                <a class="settings" title=""></a>
+                                <div class="settingsMenu">
+                                    <a title="" class="edit">Fikri düzenle</a>
+                                    <span></span>
+                                    <a title="" class="delete">Fikri sil</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="space"><td colspan="7"></td></tr>
 			<!-- One Project END -->
             {% empty %}
-            <tr class="description">
-				<td colspan="7">
-					<div class="text long">
-                        No project ideas
-                    </div>
-                </td>
-            </tr>
+                <tr class="description">
+                    <td colspan="7">
+                        <div class="text long">
+                            No project ideas
+                        </div>
+                    </td>
+                </tr>
             {% endfor %}
 		</table>
 		<!-- Projects END-->
 
 		<!-- Paging -->
         {% if is_paginated %}
-		<div class="paging">
-            {% if ideas.has_previous %}
-                <a href="{{ ideas.previous_page_number }}" title="İlk sayfa" class="first">&lt;</a>
-            {% endif %}
+            <div class="paging">
+                {% if ideas.has_previous %}
+                    <a href="{{ ideas.previous_page_number }}" title="İlk sayfa" class="first">&lt;</a>
+                {% endif %}
 
-            {% for num in paginator.page_range %}
-                {% ifequal num ideas.number %}
-                <a href="{{ ideas.number }}" title="" class="number active">{{ num }}</a>
-                {% else %}
-                <a href="{{ num }}" title="" class="number">{{ num }}</a>
-                {% endifequal %}
-            {% endfor %}
+                {% for num in paginator.page_range %}
+                    {% ifequal num ideas.number %}
+                    <a href="{{ ideas.number }}" title="" class="number active">{{ num }}</a>
+                    {% else %}
+                    <a href="{{ num }}" title="" class="number">{{ num }}</a>
+                    {% endifequal %}
+                {% endfor %}
 
-            {% if ideas.has_next %}
-                <a href="{{ ideas.next_page_number }}" title="İlk sayfa" class="last">&lt;</a>
-            {% endif %}
-		</div>
+                {% if ideas.has_next %}
+                    <a href="{{ ideas.next_page_number }}" title="İlk sayfa" class="last">&lt;</a>
+                {% endif %}
+            </div>
         {% endif %}
 		<!-- Paging END -->
 	</div>

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Content -->
+    <div class="content">
+        <div class="inner-wrapper">
+            {% with current_sub_page='brands' %}
+                {% include 'pool/cms/common/sub_menu_for_cms.html' %}
+            {% endwith %}
+
+            {% comment %}
+            <div class="warning">
+                <span>!</span> 3 öğenin silme işlemi tamamlandı. <a href="#" title="">Geri al</a>
+            </div>
+            {% endcomment %}
+
+            <table class="grid">
+                <tbody>
+                    {% for brand in brands %}
+                        <tr class="description">
+                            <td colspan="7">
+                                <div class="buttons">
+                                    <input type="checkbox" id="chck01">
+                                    <a href="#TODO" title="Güncelle" class="edit"></a>
+                                    <a href="#TODO" title="Sil" class="delete"></a>
+                                </div>
+                                <div class="text">{{ brand }}</div>
+                            </td>
+                        </tr>
+                        <tr class="space"><td colspan="7"></td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% if is_paginated %}
+                <div class="paging">
+                    {% if brands.has_previous %}
+                        <a href="{{ brands.previous_page_number }}" title="İlk sayfa" class="first">&lt;</a>
+                    {% endif %}
+
+                    {% for num in paginator.page_range %}
+                        {% ifequal num ideas.number %}
+                        <a href="{{ brands.number }}" title="" class="number active">{{ num }}</a>
+                        {% else %}
+                        <a href="{{ num }}" title="" class="number">{{ num }}</a>
+                        {% endifequal %}
+                    {% endfor %}
+
+                    {% if brands.has_next %}
+                        <a href="{{ brands.next_page_number }}" title="İlk sayfa" class="last">&lt;</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <a href="#TODO" title="" class="roll-back">Seçili markaları sil</a>
+        </div>
+    </div>
+{% endblock %}
