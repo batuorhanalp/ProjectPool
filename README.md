@@ -20,10 +20,6 @@ Use following to set up the project
 Running The Project
 ===================
   
-Make sure that mongodb is running.
-
-    mongod
-
 To run the project issue following commands:
 
     source venv/bin/activate
