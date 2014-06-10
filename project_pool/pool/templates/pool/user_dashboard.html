@@ -25,8 +25,8 @@
                 <tr class="title">
                     <td colspan="2">{{ idea.name }}</td>
                     <td colspan="1">{{ idea.offerred_brands|join:", " }}</td>
-                    <td colspan="1">{{ idea.dealt_brands|join:", " }}</td>
-                    <td colspan="1">{{ idea.categories|join:", " }}</td>
+                    <td colspan="1">{{ idea.dealt_brands }}</td>
+                    <td colspan="1">{{ idea.categories }}</td>
                     <td colspan="1">{{ idea.budget }}</td>
                     <td colspan="1">{{ idea.date|date:"d.m.Y" }}</td>
                 </tr>
@@ -74,19 +74,19 @@
         {% if is_paginated %}
             <div class="paging">
                 {% if ideas.has_previous %}
-                    <a href="{{ ideas.previous_page_number }}" title="İlk sayfa" class="first">&lt;</a>
+                    <a href="?page={{ ideas.previous_page_number }}" title="İlk sayfa" class="first">&lt;</a>
                 {% endif %}
 
                 {% for num in paginator.page_range %}
                     {% ifequal num ideas.number %}
-                    <a href="{{ ideas.number }}" title="" class="number active">{{ num }}</a>
+                    <a href="?page={{ ideas.number }}" title="" class="number active">{{ num }}</a>
                     {% else %}
-                    <a href="{{ num }}" title="" class="number">{{ num }}</a>
+                    <a href="?page={{ num }}" title="" class="number">{{ num }}</a>
                     {% endifequal %}
                 {% endfor %}
 
                 {% if ideas.has_next %}
-                    <a href="{{ ideas.next_page_number }}" title="İlk sayfa" class="last">&lt;</a>
+                    <a href="?page={{ ideas.next_page_number }}" title="İlk sayfa" class="last">&lt;</a>
                 {% endif %}
             </div>
         {% endif %}
