@@ -12,8 +12,8 @@ INSTALLED_APPS += (
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': 'project_pool',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -45,7 +45,7 @@ DEBUG_TOOLBAR_PANELS = [
 ]
 
 DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
+    #'INTERCEPT_REDIRECTS': False,
     #'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
     #'EXTRA_SIGNALS': ['myproject.signals.MySignal'],
     #'HIDE_DJANGO_SQL': False,
