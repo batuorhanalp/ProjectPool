@@ -24,10 +24,10 @@
                 <!-- One Project -->
                 <tr class="title">
                     <td colspan="2">{{ idea.name }}</td>
-                    <td colspan="1">{{ idea.offerred_brands|join:", " }}</td>
-                    <td colspan="1">{{ idea.dealt_brands|join:", " }}</td>
-                    <td colspan="1">{{ idea.categories|join:", " }}</td>
-                    <td colspan="1">{{ idea.budget }}</td>
+                    <td colspan="1">{{ idea.offerred_brands.all|join:", " }}</td>
+                    <td colspan="1">{{ idea.dealt_brands.all|join:", " }}</td>
+                    <td colspan="1">{{ idea.categories.all|join:", " }}</td>
+                    <td colspan="1">{{ idea.budget.all }}</td>
                     <td colspan="1">{{ idea.date|date:"d.m.Y" }}</td>
                 </tr>
                 <tr class="description">
