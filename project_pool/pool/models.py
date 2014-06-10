@@ -39,6 +39,9 @@ class Budget(models.Model):
         """string representation of the model"""
         return "$%s - $%s" % (self.start, self.end)
 
+    def get_absolute_url(self):
+        return reverse('pool:cms_budget_list')
+
 
 class Idea(models.Model):
     name = models.CharField("Fikir Ismi", max_length=64)

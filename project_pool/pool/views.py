@@ -1,7 +1,8 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from models import (
     Brand,
-    Idea
+    Idea,
+    Budget,
 )
 
 
@@ -90,3 +91,16 @@ class CMSSettings(UpdateView):
     CMS/16-Karbonat Intranet - CMS_0006_Page 4 - General Settings
     """
     pass
+
+
+class CMSBudgetCreation(CreateView):
+    model = Budget
+    fields = ['start', 'end']
+    template_name = 'pool/cms/budget_creation.html'
+
+
+class CMSBudgetList(ListView):
+    model = Budget
+    context_object_name = 'budgets'
+    paginate_by = 2
+    template_name = 'pool/cms/budget_list.html'

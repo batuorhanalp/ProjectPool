@@ -15,4 +15,8 @@ urlpatterns = patterns('pool.views',
     # Brand
     url(r'^cms/markalar/?$', login_required(CMSBrandList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_brand_list"),
     url(r'^cms/yeni-marka/?$', login_required(CMSBrandCreation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_brand_creation"),
+
+    # Budget
+    url(r'^cms/butceler/?$', login_required(CMSBudgetList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_budget_list"),
+    url(r'^cms/yeni-butce/?$', login_required(CMSBudgetCreation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_budget_creation"),
 )
