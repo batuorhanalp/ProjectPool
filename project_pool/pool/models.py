@@ -53,10 +53,13 @@ class Idea(models.Model):
     name = models.CharField("Fikir Ismi", max_length=64)
     summary = models.CharField(max_length=255, blank=True)
     detail = models.TextField(blank=True)
-    offerred_brands = EmbeddedModelListField(EmbeddedModelField('Brand'))
-    dealt_brands = EmbeddedModelListField(EmbeddedModelField('Brand'))
-    categories = EmbeddedModelListField(EmbeddedModelField('Category'))
-    budget = EmbeddedModelField('Budget', null=True)
+    offerred_brands = EmbeddedModelListField(EmbeddedModelField('Brand'),
+                                             blank=True)
+    dealt_brands = EmbeddedModelListField(EmbeddedModelField('Brand'),
+                                          blank=True)
+    categories = EmbeddedModelListField(EmbeddedModelField('Category',
+                                                           blank=True))
+    budget = EmbeddedModelField('Budget', null=True, blank=True)
     date = models.DateTimeField("Fikir Tarihi", blank=True,
                                 default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -70,3 +73,26 @@ class Idea(models.Model):
         return reverse('pool:cms_idea_details', kwargs={
             'pk': self.id
         })
+
+    def save(self, *args, **kwargs):
+        """
+        somehow model id's won't be mapped to their model instances
+        this is a hack to solve this issue
+        TODO: look at mongodb-nonrel docs to solve this issue
+        """
+        if isinstance(self.budget, basestring):
+            self.budget = Budget.objects.filter(id=self.budget)[0]
+
+        for i, category in enumerate(self.categories):
+            if isinstance(category, basestring):
+                self.categories[i] = Category.objects.filter(id=category)[0]
+
+        for i, dealt_brand in enumerate(self.dealt_brands):
+            if isinstance(dealt_brand, basestring):
+                self.dealt_brands[i] = Brand.objects.filter(id=dealt_brand)[0]
+
+        for i, offerred_brand in enumerate(self.offerred_brands):
+            if isinstance(offerred_brand, basestring):
+                self.offerred_brands[i] = Brand.objects.filter(id=offerred_brand)[0]
+
+        super(Idea, self).save(*args, **kwargs)
