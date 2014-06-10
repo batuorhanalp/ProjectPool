@@ -7,6 +7,14 @@
         <div class="inner-wrapper">
             {% include 'pool/cms/common/sub_menu_for_projects.html' with current_sub_page='creation' %}
 
+            <div class="warning">
+                {% if form.errors %}
+                    {% for field in form %}
+                    <span>!</span>{{ field.label_tag }} {{ field.errors }} 
+                    {% endfor %}
+                {% endif %}
+            </div>
+
             <!-- Add Idea -->
             <form action="{% url 'pool:cms_idea_creation' %}" method="POST">{% csrf_token %}
                 <div class="row">

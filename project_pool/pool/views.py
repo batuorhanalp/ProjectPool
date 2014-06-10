@@ -1,5 +1,8 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from models import *
+from models import (
+    Brand,
+    Idea
+)
 
 
 class IdeaDetail(DetailView):
@@ -44,7 +47,8 @@ class CMSIdeaCreation(CreateView):
     CMS/11-Karbonat Intranet - CMS_0003_Page 1 - Idea Panel
     """
     model = Idea
-    fields = ['name', 'summary', 'detail', 'offerred_brands', 'dealt_brands', 'categories', 'budget']
+    fields = ['name', 'summary', 'detail', 'offerred_brands', 'dealt_brands',
+              'categories', 'budget']
     template_name = 'pool/cms/idea_creation.html'
 
 
@@ -62,7 +66,9 @@ class CMSBrandCreation(CreateView):
     u"""
     CMS/13-Karbonat Intranet - CMS_0004_Page 2 - Client Panel
     """
-    pass
+    model = Brand
+    fields = ['name']
+    template_name = 'pool/cms/brand_creation.html'
 
 
 class CMSUserList(ListView):

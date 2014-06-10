@@ -18,6 +18,8 @@ class Brand(models.Model):
         """string representation of the model"""
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('pool:cms_brand_list')
 
 class Category(models.Model):
     name = models.CharField("Kategori Adı", max_length=64)
