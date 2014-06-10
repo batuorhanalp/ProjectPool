@@ -14,45 +14,49 @@
             </div>
             {% endcomment %}
 
-            <table class="grid">
-                <tbody>
-                    {% for brand in brands %}
-                        <tr class="description">
-                            <td colspan="7">
-                                <div class="buttons">
-                                    <input type="checkbox" id="chck01">
-                                    <a href="#TODO" title="Güncelle" class="edit"></a>
-                                    <a href="#TODO" title="Sil" class="delete"></a>
-                                </div>
-                                <div class="text">{{ brand }}</div>
-                            </td>
-                        </tr>
-                        <tr class="space"><td colspan="7"></td></tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <form action="{% url 'pool:cms_brand_multiple_delete' %}" method="post">{% csrf_token %}
+                <table class="grid">
+                    <tbody>
+                        {% for brand in brands %}
+                            <tr class="description">
+                                <td colspan="7">
+                                    <div class="buttons">
+                                        <input type="checkbox" id="chck01" name="brand_id[]" value="{{ brand.id }}">
+                                        <a href="#TODO" title="Güncelle" class="edit"></a>
+                                        <a href="{% url 'pool:cms_brand_delete' pk=brand.id %}" title="Sil" class="delete"></a>
+                                    </div>
+                                    <div class="text">{{ brand }}</div>
+                                </td>
+                            </tr>
+                            <tr class="space"><td colspan="7"></td></tr>
+                        {% empty %}
+                            Hic marka yok
+                        {% endfor %}
+                    </tbody>
+                </table>
 
-            {% if is_paginated %}
-                <div class="paging">
-                    {% if brands.has_previous %}
-                        <a href="{{ brands.previous_page_number }}" title="İlk sayfa" class="first">&lt;</a>
-                    {% endif %}
+                {% if is_paginated %}
+                    <div class="paging">
+                        {% if brands.has_previous %}
+                            <a href="?page={{ brands.previous_page_number }}" title="İlk sayfa" class="first">&lt;</a>
+                        {% endif %}
 
-                    {% for num in paginator.page_range %}
-                        {% ifequal num ideas.number %}
-                        <a href="{{ brands.number }}" title="" class="number active">{{ num }}</a>
-                        {% else %}
-                        <a href="{{ num }}" title="" class="number">{{ num }}</a>
-                        {% endifequal %}
-                    {% endfor %}
+                        {% for num in paginator.page_range %}
+                            {% ifequal num ideas.number %}
+                            <a href="?page={{ brands.number }}" title="" class="number active">{{ num }}</a>
+                            {% else %}
+                            <a href="?page={{ num }}" title="" class="number">{{ num }}</a>
+                            {% endifequal %}
+                        {% endfor %}
 
-                    {% if brands.has_next %}
-                        <a href="{{ brands.next_page_number }}" title="İlk sayfa" class="last">&lt;</a>
-                    {% endif %}
-                </div>
-            {% endif %}
+                        {% if brands.has_next %}
+                            <a href="?page={{ brands.next_page_number }}" title="İlk sayfa" class="last">&lt;</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
 
-            <a href="#TODO" title="" class="roll-back">Seçili markaları sil</a>
+                <input type="submit" value"Seçili markaları sil" class="roll-back" />
+            </form>
         </div>
     </div>
 {% endblock %}

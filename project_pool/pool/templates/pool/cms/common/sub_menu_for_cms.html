@@ -5,7 +5,9 @@
             <span class="seperator">|</span>
         <a href="{% url 'pool:cms_brand_list' %}" title=""{% if 'brands' == current_sub_page %} class="active"{% endif %}>MARKALAR</a>
             <span class="seperator">|</span>
-        <a href="TODO" title=""{% if 'users' == current_sub_page %} class="active"{% endif %}>KULLANICILAR</a>
+        <a href="{% url 'pool:cms_budget_list' %}" title=""{% if 'users' == current_sub_page %} class="active"{% endif %}>BUTCELER</a>
+            <span class="seperator">|</span>
+        <a href="TODO" title=""{% if 'users' == current_sub_page %} class="active"{% endif %}>KATEGORILER</a>
             <span class="seperator">|</span>
         <a href="TODO" title=""{% if 'settings' == current_sub_page %} class="active"{% endif %}>AYARLAR</a>
         {% if 'ideas' == current_sub_page %}
@@ -19,6 +21,10 @@
         {% elif 'users' == current_sub_page %}
             <div class="right">
                 <a href="TODO" title="" class="new">YENİ KULLANICI</a>
+            </div>
+        {% elif 'budgets' == current_sub_page %}
+            <div class="right">
+                <a href="{% url 'pool:cms_budget_creation' %}" title="" class="new">YENİ BUTCE</a>
             </div>
         {% elif 'settings' == current_sub_page %}
         {% endif %}

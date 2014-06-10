@@ -15,8 +15,12 @@ urlpatterns = patterns('pool.views',
     # Brand
     url(r'^cms/markalar/?$', login_required(CMSBrandList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_brand_list"),
     url(r'^cms/yeni-marka/?$', login_required(CMSBrandCreation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_brand_creation"),
+    url(r'^cms/marka-sil/?$', "brand_multiple_deletion", name="cms_brand_multiple_delete"),
+    url(r'^cms/marka-sil/(?P<pk>[a-zA-Z0-9]+)/$', login_required(CMSBrandDeletion.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_brand_delete'),
 
     # Budget
     url(r'^cms/butceler/?$', login_required(CMSBudgetList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_budget_list"),
     url(r'^cms/yeni-butce/?$', login_required(CMSBudgetCreation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_budget_creation"),
+    url(r'^cms/butce-sil/?$', "budget_multiple_deletion", name="cms_budget_multiple_delete"),
+    url(r'^cms/butce-sil/(?P<pk>[a-zA-Z0-9]+)/$', login_required(CMSBudgetDeletion.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_budget_delete'),
 )

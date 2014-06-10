@@ -4,7 +4,6 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 from djangotoolbox.fields import (
-    ListField,
     EmbeddedModelField
 )
 from .fields import EmbeddedModelListField
@@ -21,6 +20,7 @@ class Brand(models.Model):
     def get_absolute_url(self):
         return reverse('pool:cms_brand_list')
 
+
 class Category(models.Model):
     name = models.CharField("Kategori Adı", max_length=64)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -34,6 +34,9 @@ class Budget(models.Model):
     start = models.PositiveIntegerField("Başlangıç Fiyatı")
     end = models.PositiveIntegerField("Bitiş Fiyatı")
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['start', 'end']
 
     def __unicode__(self):
         """string representation of the model"""
@@ -51,9 +54,10 @@ class Idea(models.Model):
     dealt_brands = EmbeddedModelListField(EmbeddedModelField('Brand'))
     categories = EmbeddedModelListField(EmbeddedModelField('Category'))
     budget = EmbeddedModelField('Budget', null=True)
-    date = models.DateTimeField("Fikir Tarihi", blank=True, default=timezone.now)
+    date = models.DateTimeField("Fikir Tarihi", blank=True,
+                                default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
-    #created_by = EmbeddedModelField('User')
+    # created_by = EmbeddedModelField('User')
 
     def __unicode__(self):
         """string representation of the model"""

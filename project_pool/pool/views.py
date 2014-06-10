@@ -1,4 +1,11 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import (
+    ListView, DetailView, CreateView,
+    UpdateView, DeleteView,
+)
+from django.views.decorators.http import require_http_methods
+from django.shortcuts import redirect
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.decorators import login_required
 from models import (
     Brand,
     Idea,
@@ -72,6 +79,29 @@ class CMSBrandCreation(CreateView):
     template_name = 'pool/cms/brand_creation.html'
 
 
+class CMSBrandDeletion(DeleteView):
+    model = Brand
+    success_url = reverse_lazy('pool:cms_brand_list')
+    template_name = 'pool/cms/brand_delete.html'
+
+
+@login_required
+@require_http_methods(["POST"])
+def brand_multiple_deletion(request):
+    """
+    delete multiple brands at once.
+    get brand_id array as request param
+    """
+    # TODO: get ile emin misiniz ekrani yap, post ile sil
+    # if request.method == "POST":
+
+    brand_ids = request.POST.getlist('brand_id[]')
+    brands = Brand.objects.filter(id__in=brand_ids)
+    for brand in brands:
+        brand.delete()
+    return redirect("pool:cms_brand_list")
+
+
 class CMSUserList(ListView):
     u"""
     CMS/14-Karbonat Intranet - CMS_0002_Page 3 - User
@@ -104,3 +134,26 @@ class CMSBudgetList(ListView):
     context_object_name = 'budgets'
     paginate_by = 2
     template_name = 'pool/cms/budget_list.html'
+
+
+class CMSBudgetDeletion(DeleteView):
+    model = Budget
+    success_url = reverse_lazy('pool:cmd_budget_list')
+    template_name = 'pool/cms/budget_delete.html'
+
+
+@login_required
+@require_http_methods(["POST"])
+def budget_multiple_deletion(request):
+    """
+    delete multiple budgets at once.
+    get budget_id array as request param
+    """
+    # TODO: get ile emin misiniz ekrani yap, post ile sil
+    # if request.method == "POST":
+
+    budget_ids = request.POST.getlist('budget_id[]')
+    budgets = Budget.objects.filter(id__in=budget_ids)
+    for budget in budgets:
+        budget.delete()
+    return redirect("pool:cms_budget_list")
