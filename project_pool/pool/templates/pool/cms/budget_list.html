@@ -1,0 +1,13 @@
+{% extends "pool/user_dashboard.html" %}
+
+{% block content %}
+<ul>
+    {% for budget in budgets %}
+    <li>
+        {{ budget }}
+        </li>
+    {% empty %}
+        burada budget falan yok
+    {% endfor %}
+</ul>
+{% endblock %}
