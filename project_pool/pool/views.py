@@ -10,6 +10,7 @@ from models import (
     Brand,
     Idea,
     Budget,
+    Category,
 )
 
 
@@ -157,3 +158,39 @@ def budget_multiple_deletion(request):
     for budget in budgets:
         budget.delete()
     return redirect("pool:cms_budget_list")
+
+
+class CMSCategoryCreation(CreateView):
+    model = Category
+    fields = ['name']
+    template_name = 'pool/cms/category_creation.html'
+
+
+class CMSCategoryList(ListView):
+    model = Category
+    context_object_name = 'categories'
+    paginate_by = 2
+    template_name = 'pool/cms/category_list.html'
+
+
+class CMSCategoryDeletion(DeleteView):
+    model = Category
+    success_url = reverse_lazy('pool:cms_category_list')
+    template_name = 'pool/cms/category_delete.html'
+
+
+@login_required
+@require_http_methods(["POST"])
+def category_multiple_deletion(request):
+    """
+    delete multiple categories at once.
+    get category_id array as request param
+    """
+    # TODO: get ile emin misiniz ekrani yap, post ile sil
+    # if request.method == "POST":
+
+    category_ids = request.POST.getlist('category_id[]')
+    categories = Category.objects.filter(id__in=category_ids)
+    for category in categories:
+        category.delete()
+    return redirect("pool:cms_category_list")
