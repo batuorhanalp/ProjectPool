@@ -31,7 +31,7 @@ class UserDashboard(ListView):
     model = Idea
     context_object_name = 'ideas'
     paginate_by = 2
-    template_name = 'pool/user_dashboard.html'
+    template_name = 'pool/cms/idea_list.html'
 
 
 ###
