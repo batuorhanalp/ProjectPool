@@ -46,3 +46,4 @@ celerybeat*
 erl_crash.dump
 compiled_static_files
 .idea
+*.sqlite3
