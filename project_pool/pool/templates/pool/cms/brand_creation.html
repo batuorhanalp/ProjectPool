@@ -5,21 +5,9 @@
 <div class="content">
 	<div class="inner-wrapper">
 		<!-- Sub Menu -->
-		<div class="sub-menu">
-			<div class="top">
-				<a href="admin.html" title="">FİKİRLER</a>
-				<span class="seperator">|</span>
-				<a href="clients.html" title="" class="active">MARKALAR</a>
-				<span class="seperator">|</span>
-				<a href="users.html" title="">KULLANICILAR</a>
-				<span class="seperator">|</span>
-				<a href="settings.html" title="">AYARLAR</a>
-				<div class="right">
-					<a href="new-project.html" title="" class="new">YENİ MARKA</a>
-				</div>
-			</div>
-			<div class="indicator clients"></div>
-		</div>	
+		{% with current_sub_page='brands' %}
+      {% include 'pool/cms/common/sub_menu_for_cms.html' %}
+    {% endwith %}
 		<!-- Sub Menu END -->
 		<br>
 		<br>
