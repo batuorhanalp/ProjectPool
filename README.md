@@ -20,10 +20,16 @@ Use following to set up the project
 Running The Project
 ===================
   
-To run the project issue following commands:
+Each time you start developing or running, make sure you run the following command:
 
     source venv/bin/activate
-    cd project_pool
+
+First time installation (and whenever you change anyhing in the models, also make sure that issue `cd project_pool` if you're not in the development folder):
+
+    python manage.py syncdb
+
+To run the project issue following commands (`cd project_pool` if you're not in the development folder):
+
     python manage.py runserver_plus
 
 Visit `http://localhost:8000/` on your browser. You have run the project in development environment.
