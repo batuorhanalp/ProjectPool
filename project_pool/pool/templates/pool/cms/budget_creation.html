@@ -1,8 +1,56 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="{% url 'pool:cms_budget_creation' %}" method="post">{% csrf_token %}
-{{ form }}
-<input type="submit" ></input>
-</form>
+<!-- Content -->
+<div class="content">
+	<div class="inner-wrapper">
+		<!-- Sub Menu -->
+		<div class="sub-menu">
+			<div class="top">
+				<a href="admin.html" title="">FİKİRLER</a>
+				<span class="seperator">|</span>
+				<a href="clients.html" title="" class="active">MARKALAR</a>
+				<span class="seperator">|</span>
+				<a href="users.html" title="">KULLANICILAR</a>
+				<span class="seperator">|</span>
+				<a href="settings.html" title="">AYARLAR</a>
+				<div class="right">
+					<a href="new-project.html" title="" class="new">YENİ MARKA</a>
+				</div>
+			</div>
+			<div class="indicator clients"></div>
+		</div>	
+		<!-- Sub Menu END -->
+		<br>
+		<br>
+		<!-- Add Client -->
+		<form action="{% url 'pool:cms_budget_creation' %}" method="post">
+		{% csrf_token %}
+		<div class="row">
+			<div class="title">
+				Alt limit
+			</div>
+			<div class="elements">
+				{{ form.start }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="title">
+				Üst limit
+			</div>
+			<div class="elements">
+				{{ form.end }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="title">&nbsp;</div>
+			<div class="elements">
+				<input type="submit" name="" value="MARKAYI EKLE">
+			</div>
+		</div>
+		</form>
+		<!-- Add Client END -->
+	</div>
+</div>
+<!-- Content END -->
 {% endblock %}

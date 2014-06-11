@@ -1,9 +1,48 @@
 {% extends "base.html" %}
 
-{% block content %}
-<form action="{% url 'pool:cms_category_creation' %}" method="post">
+{% block content %}    
+<!-- Content -->
+<div class="content">
+	<div class="inner-wrapper">
+		<!-- Sub Menu -->
+		<div class="sub-menu">
+			<div class="top">
+				<a href="admin.html" title="">FİKİRLER</a>
+				<span class="seperator">|</span>
+				<a href="clients.html" title="" class="active">MARKALAR</a>
+				<span class="seperator">|</span>
+				<a href="users.html" title="">KULLANICILAR</a>
+				<span class="seperator">|</span>
+				<a href="settings.html" title="">AYARLAR</a>
+				<div class="right">
+					<a href="new-project.html" title="" class="new">YENİ MARKA</a>
+				</div>
+			</div>
+			<div class="indicator clients"></div>
+		</div>	
+		<!-- Sub Menu END -->
+		<br>
+		<br>
+		<!-- Add Client -->
+		<form action="{% url 'pool:cms_category_creation' %}" method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit"></input>
+		<div class="row">
+			<div class="title">
+				Kategori adı
+			</div>
+			<div class="elements">
+				{{ form.name }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="title">&nbsp;</div>
+			<div class="elements">
+				<input type="submit" name="" value="MARKAYI EKLE">
+			</div>
+		</div>
+		<!-- Add Client END -->
+	</div>
+</div>
 </form>
+<!-- Content END -->
 {% endblock %}
