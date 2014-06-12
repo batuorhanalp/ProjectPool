@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.contrib import messages
 from django.db.models import Q
 from models import (
     Brand,
@@ -203,8 +204,6 @@ def category_multiple_deletion(request):
 @require_http_methods(["GET"])
 def search(request):
     """searches the entire app"""
-    # import pdb
-    # pdb.set_trace()
 
     # get variables
     offerred_brand_ids = request.GET.getlist('offerred_brands')
@@ -215,23 +214,11 @@ def search(request):
     end_date = request.GET.get('end_date')
     q = request.GET.get('q')
 
+    # what could we do without an alert message
+    alert_message = ""
+
     # build filters
     objects = Idea.objects
-    if offerred_brand_ids:
-        objects = objects.filter(offerred_brands__id__in=offerred_brand_ids)
-
-    if dealt_brand_ids:
-        objects = objects.filter(dealt_brands__id__in=dealt_brand_ids)
-
-    if category_ids:
-        objects = objects.filter(categories__id__in=category_ids)
-
-    if budget_ids:
-        objects = objects.filter(budget__id__in=budget_ids)
-
-    if start_date and end_date:
-        # objects = objects.filter(start)
-        pass
 
     if q:
         words = q.strip().split(" ")
@@ -239,8 +226,41 @@ def search(request):
             objects = objects.filter(Q(name__icontains=word) |
                                      Q(summary__icontains=word) |
                                      Q(detail__icontains=q))
+        alert_message += "Icinde " + " ya da ".join(words) + " kelimeleri gecen, "
+
+    if offerred_brand_ids:
+        objects = objects.filter(offerred_brands__id__in=offerred_brand_ids)
+        brands = Brand.objects.filter(id__in=offerred_brand_ids).all()
+        alert_message += " ya da ".join([x.name for x in brands]) + " markalarina sunulmus, "
+
+    if dealt_brand_ids:
+        objects = objects.filter(dealt_brands__id__in=dealt_brand_ids)
+        brands = Brand.objects.filter(id__in=dealt_brand_ids).all()
+        alert_message += " ya da ".join([x.name for x in brands]) + " markalarina satilmis, "
+
+    if category_ids:
+        objects = objects.filter(categories__id__in=category_ids)
+        categories = Category.objects.filter(id__in=category_ids).all()
+        alert_message += " ya da ".join([x.name for x in categories]) + " kategorileri icinde, "
+
+    if budget_ids:
+        objects = objects.filter(budget__id__in=budget_ids)
+        budgets = Budget.objects.filter(id__in=budget_ids).all()
+        alert_message += " ya da ".join([str(x) for x in budgets]) + " butceleri icin, "
+
+    if start_date and end_date:
+        # objects = objects.filter(start)
+        pass
 
     ideas = objects.all()
+
+    if ideas.count() == 0:
+        alert_message += "hicbir sonuc bulunamadi :("
+    else:
+        alert_message += "%d sonuc bulundu." % ideas.count()
+
+    messages.add_message(request, messages.INFO,  alert_message)
+
     # send it to the template
     context = {
         "ideas": ideas, "budget_ids": [int(x) for x in budget_ids],
@@ -249,7 +269,7 @@ def search(request):
         "category_ids": [int(x) for x in category_ids],
         "start_date": start_date,
         "end_date": end_date,
-        "q": q
+        "q": q,
     }
     return render_to_response("pool/cms/idea_list.html", context,
                               context_instance=RequestContext(request)

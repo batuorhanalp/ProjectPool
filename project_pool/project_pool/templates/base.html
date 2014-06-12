@@ -33,6 +33,7 @@
         </div>	
         <!-- Header END -->
     {% endblock %}
+
     {% block search %}
         {% get_brands as brands %}
         {% get_categories as categories %}
@@ -113,7 +114,17 @@
         </div>	
         <!-- Search END-->
     {% endblock %}
+
+    {% if messages %}
+    <div class="warning">
+        {% for message in messages %}
+        <span>!</span>{{ message }} 
+        {% endfor %}
+    </div>
+    {% endif %}
+
     {% block content %}No content{% endblock %}
+
     {% block footer %}
         <!-- Footer -->
         <div class="footer">
