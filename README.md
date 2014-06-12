@@ -27,6 +27,7 @@ Each time you start developing or running, make sure you run the following comma
 First time installation (and whenever you change anyhing in the models, also make sure that issue `cd project_pool` if you're not in the development folder):
 
     python manage.py syncdb
+    python manage.py createinitialrevisions
 
 To run the project issue following commands (`cd project_pool` if you're not in the development folder):
 
