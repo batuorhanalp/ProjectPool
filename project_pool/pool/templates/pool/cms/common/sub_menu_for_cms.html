@@ -5,11 +5,7 @@
             <span class="seperator">|</span>
         <a href="{% url 'pool:cms_brand_list' %}" title=""{% if 'brands' == current_sub_page %} class="active"{% endif %}>MARKALAR</a>
             <span class="seperator">|</span>
-        <a href="{% url 'pool:cms_budget_list' %}" title=""{% if 'users' == current_sub_page %} class="active"{% endif %}>BUTCELER</a>
-            <span class="seperator">|</span>
-        <a href="{% url 'pool:cms_category_list' %}" title=""{% if 'categories' == current_sub_page %} class="active"{% endif %}>KATEGORILER</a>
-            <span class="seperator">|</span>
-        <a href="TODO" title=""{% if 'settings' == current_sub_page %} class="active"{% endif %}>AYARLAR</a>
+        <a href="{% url 'pool:settings' %}" title=""{% if 'settings' == current_sub_page %} class="active"{% endif %}>AYARLAR</a>
         {% if 'ideas' == current_sub_page %}
             <div class="right">
                 <a href="{% url 'pool:cms_idea_creation' %}" title="" class="new">YENİ FİKİR</a>

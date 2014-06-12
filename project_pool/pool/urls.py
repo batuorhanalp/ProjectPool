@@ -38,6 +38,9 @@ urlpatterns = patterns('pool.views',
     # search
     url(r'^search/?$', "search", name="search"),
 
+    # settings
+    url(r'^settings/?$', "settings_view", name="settings"),
+
     # undo
     url(r'^undo/?$', "undo_last_request", name="undo"),
     url(r'^undo-creation/?$', "undo_and_delete_last_request", name="undo_and_delete"),

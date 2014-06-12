@@ -127,7 +127,7 @@ class CMSBrandUpdation(CMSBrandBase, UpdateView):
     """
     def get_success_message(self, cleaned_data):
         return '%s isimli marka guncellendi. <a href="%s">geri al</a>' %\
-            (cleaned_data['name'], reverse('pool:undo_and_delete'))
+            (cleaned_data['name'], reverse('pool:undo'))
 
 
 class CMSBrandDeletion(DeleteView):
@@ -151,6 +151,20 @@ def brand_multiple_deletion(request):
     for brand in brands:
         brand.delete()
     return redirect("pool:cms_brand_list")
+
+
+@login_required
+def settings_view(request):
+    budgets = Budget.objects.all()
+    categories = Category.objects.all()
+    context = {
+        "budgets": budgets,
+        "categories": categories,
+    }
+    return render_to_response("pool/cms/settings.html", context,
+                              context_instance=RequestContext(request)
+                              )
+
 
 
 class CMSUserList(ListView):
@@ -189,10 +203,10 @@ class CMSBudgetCreation(CMSBudgetBase, CreateView):
             (cleaned_data['start'], cleaned_data['end'], reverse('pool:undo_and_delete'))
 
 
-class CMSBudgetUpdation(CMSBudgetBase, CreateView):
+class CMSBudgetUpdation(CMSBudgetBase, UpdateView):
     def get_success_message(self, cleaned_data):
         return '$%s - $%s isimli butce guncellendi. <a href="%s">geri al</a>' %\
-            (cleaned_data['start'], cleaned_data['end'], reverse('pool:undo_and_delete'))
+            (cleaned_data['start'], cleaned_data['end'], reverse('pool:undo'))
 
 
 class CMSBudgetList(ListView):
@@ -222,7 +236,7 @@ def budget_multiple_deletion(request):
     budgets = Budget.objects.filter(id__in=budget_ids)
     for budget in budgets:
         budget.delete()
-    return redirect("pool:cms_budget_list")
+    return redirect("pool:settings")
 
 
 class CMSCategoryBase(SuccessMessageMixin):
@@ -240,10 +254,10 @@ class CMSCategoryCreation(CMSCategoryBase, CreateView):
             (cleaned_data['name'], reverse('pool:undo_and_delete'))
 
 
-class CMSCategoryUpdation(CMSCategoryBase, CreateView):
+class CMSCategoryUpdation(CMSCategoryBase, UpdateView):
     def get_success_message(self, cleaned_data):
         return '%s isimli kategori guncellendi. <a href="%s">geri al</a>' %\
-            (cleaned_data['name'], reverse('pool:undo_and_delete'))
+            (cleaned_data['name'], reverse('pool:undo'))
 
 
 class CMSCategoryList(ListView):
@@ -273,7 +287,7 @@ def category_multiple_deletion(request):
     categories = Category.objects.filter(id__in=category_ids)
     for category in categories:
         category.delete()
-    return redirect("pool:cms_category_list")
+    return redirect("pool:settings")
 
 
 @login_required

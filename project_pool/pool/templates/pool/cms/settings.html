@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Content -->
+<div class="content">
+	<div class="inner-wrapper">
+		<!-- Sub Menu -->
+        {% with current_sub_page='settings' %}
+        {% include 'pool/cms/common/sub_menu_for_cms.html' %}
+        {% endwith %}
+		<!-- Sub Menu END -->
+		<br>
+		<br>
+
+        <form action="{% url 'pool:cms_budget_multiple_delete' %}" method="post"> {% csrf_token %}
+            <!-- Settings groups -->
+            <div class="row">
+                <div class="title">
+                    Bütçe aralıkları
+                </div>
+                <div class="elements">
+                    {% for budget in budgets %}
+                    <input type="checkbox" name="budget_id[]" value="{{ budget.id }}" id="chck{{ budget.id }}" ><label for="chck{{ budget.pk }}">{{ budget }}</label>
+                    {% endfor %}
+                    <input type="submit" href="#" title="" class="roll-back" value="Seçili bütçe aralıklarını sil" />
+                    <a href="{% url 'pool:cms_budget_creation' %}">yeni butcec araligi</a>
+                </div>
+                <br />
+            </div>
+            <!-- Settings groups END -->
+		</form>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <form action="{% url 'pool:cms_category_multiple_delete' %}" method="post"> {% csrf_token %}
+            <!-- Settings groups -->
+            <div class="row">
+                <div class="title">
+                    Kategoriler
+                </div>
+                <div class="elements">
+                    {% for category in categories %}
+                    <input type="checkbox" name="category_id[]" value="{{ category.id }}" id="chck{{ category.id }}" ><label for="chck{{ category.pk }}">{{ category.name }}</label>
+                    {% endfor %}
+                    <input type="submit" href="#" title="" class="roll-back" value="Seçili kategorileri sil" />
+                    <a href="{% url 'pool:cms_category_creation' %}">yeni kategori</a>
+                </div>
+                <br />
+            </div>
+            <!-- Settings groups END -->
+		</form>
+	</div>
+</div>
+<!-- Content END -->
+{% endblock %}

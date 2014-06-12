@@ -22,7 +22,7 @@
                                 <td colspan="7">
                                     <div class="buttons">
                                         <input type="checkbox" id="chck01" name="brand_id[]" value="{{ brand.id }}">
-                                        <a href="{% url 'pool:cms_brand_updation' %}" title="Güncelle" class="edit"></a>
+                                        <a href="{% url 'pool:cms_brand_updation' pk=brand.pk %}" title="Güncelle" class="edit"></a>
                                         <a href="{% url 'pool:cms_brand_delete' pk=brand.id %}" title="Sil" class="delete"></a>
                                     </div>
                                     <div class="text">{{ brand }}</div>
