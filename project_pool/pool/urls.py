@@ -10,7 +10,8 @@ urlpatterns = patterns('pool.views',
     # Idea
     url(r'^cms/fikirler/?$', login_required(CMSIdeaList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_idea_list"),
     url(r'^cms/yeni-fikir/?$', login_required(CMSIdeaCreation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_idea_creation"),
-    url(r'^cms/fikir/(?P<pk>[a-zA-Z0-9]+)/$', login_required(IdeaDetail.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_idea_details'),
+    #url(r'^cms/fikir/(?P<pk>[a-zA-Z0-9]+)/$', login_required(IdeaDetail.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_idea_details'),
+    url(r'^cms/fikir-guncelle/(?P<pk>[a-zA-Z0-9]+)/$', login_required(CMSIdeaUpdation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_idea_updation'),
 
     # Brand
     url(r'^cms/markalar/?$', login_required(CMSBrandList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_brand_list"),
@@ -35,4 +36,5 @@ urlpatterns = patterns('pool.views',
 
     # undo
     url(r'^undo/?$', "undo_last_request", name="undo"),
+    url(r'^undo-creation/?$', "undo_and_delete_last_request", name="undo_and_delete"),
 )

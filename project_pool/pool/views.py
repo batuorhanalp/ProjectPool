@@ -75,7 +75,21 @@ class CMSIdeaCreation(SuccessMessageMixin, CreateView):
         return reverse('pool:cms_idea_list')
 
     def get_success_message(self, cleaned_data):
-        return '%s isimli fikir silindi. <a href="%s">geri al</a>' %\
+        return '%s isimli fikir yaratildi. <a href="%s">geri al</a>' %\
+            (cleaned_data['name'], reverse('pool:undo_and_delete'))
+
+
+class CMSIdeaUpdation(SuccessMessageMixin, UpdateView):
+    model = Idea
+    fields = ['name', 'summary', 'detail', 'offerred_brands', 'dealt_brands',
+              'categories', 'budget']
+    template_name = 'pool/cms/idea_creation.html'
+
+    def get_success_url(self):
+        return reverse('pool:cms_idea_list')
+
+    def get_success_message(self, cleaned_data):
+        return '%s isimli fikir guncellendi. <a href="%s">geri al</a>' %\
             (cleaned_data['name'], reverse('pool:undo'))
 
 
@@ -101,8 +115,8 @@ class CMSBrandCreation(SuccessMessageMixin, CreateView):
         return reverse('pool:cms_brand_list')
 
     def get_success_message(self, cleaned_data):
-        return '%s isimli marka silindi. <a href="%s">geri al</a>' %\
-            (cleaned_data['name'], reverse('pool:undo'))
+        return '%s isimli marka yaratildi. <a href="%s">geri al</a>' %\
+            (cleaned_data['name'], reverse('pool:undo_and_delete'))
 
 
 class CMSBrandDeletion(DeleteView):
@@ -158,8 +172,8 @@ class CMSBudgetCreation(SuccessMessageMixin, CreateView):
         return reverse('pool:cms_budget_list')
 
     def get_success_message(self, cleaned_data):
-        return '$%s - $%s isimli butce silindi. <a href="%s">geri al</a>' %\
-            (cleaned_data['start'], cleaned_data['end'], reverse('pool:undo'))
+        return '$%s - $%s isimli butce yaratildi. <a href="%s">geri al</a>' %\
+            (cleaned_data['start'], cleaned_data['end'], reverse('pool:undo_and_delete'))
 
 
 class CMSBudgetList(ListView):
@@ -201,8 +215,8 @@ class CMSCategoryCreation(SuccessMessageMixin, CreateView):
         return reverse('pool:cms_category_creation')
 
     def get_success_message(self, cleaned_data):
-        return '%s isimli kategori silindi. <a href="%s">geri al</a>' %\
-            (cleaned_data['name'], reverse('pool:undo'))
+        return '%s isimli kategori yaratildi. <a href="%s">geri al</a>' %\
+            (cleaned_data['name'], reverse('pool:undo_and_delete'))
 
 
 class CMSCategoryList(ListView):
@@ -314,6 +328,26 @@ def search(request):
 
 
 def undo_last_request(request):
+    """undos the latest changes"""
+    # First, previous change
+    revision = Revision.objects.filter(user=request.user).order_by('-date_created')[1]
+
+    ## And revert it, delete=True means we want to delete
+    revision.revert(delete=True)
+
+    version_set = revision.version_set.all()
+    for version in version_set:
+        version.revert()
+
+    # go back to the prev page
+    referrer = request.META.get('HTTP_REFERER')
+    if referrer:
+        return HttpResponseRedirect(referrer)
+    else:
+        return HttpResponseRedirect("/")
+
+
+def undo_and_delete_last_request(request):
     """undos the latest changes"""
     # First, get latest revision saved by this user.
     revision = Revision.objects.filter(user=request.user).order_by('-date_created')[0]
