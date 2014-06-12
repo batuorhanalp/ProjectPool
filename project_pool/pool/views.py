@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.views.generic import (
     ListView, DetailView, CreateView,
     UpdateView, DeleteView,
@@ -249,8 +250,10 @@ def search(request):
         alert_message += " ya da ".join([str(x) for x in budgets]) + " butceleri icin, "
 
     if start_date and end_date:
-        # objects = objects.filter(start)
-        pass
+        start = datetime.strptime(start_date, "%d.%m.%Y")
+        end = datetime.strptime(end_date, "%d.%m.%Y")
+        objects = objects.filter(date__range=(start, end))
+        alert_message += "%s - %s tarihleri arasinda, " % (start_date, end_date)
 
     ideas = objects.all()
 
