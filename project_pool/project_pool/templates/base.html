@@ -41,12 +41,14 @@
         <!-- Search -->
         <div class="search">
             <div class="inner-wrapper">
-                <div class="left">
-                    <input type="text" name="" value="" placeholder="Marka adı, fikir adı, fikir detayı ara..">
-                </div>
-                <div class="right">
-                    <a href="#" title="Detaylı arama"></a>
-                </div>
+                <form action="{% url 'pool:search' %}" method="get" accept-charset="utf-8">
+                    <div class="left">
+                        <input type="text" name="q" value="" placeholder="Marka adı, fikir adı, fikir detayı ara..">
+                    </div>
+                    <div class="right">
+                        <a href="#" title="Detaylı arama"></a>
+                    </div>
+                </form>
             </div>	
             <!-- Search Detail -->
             <div class="detail">

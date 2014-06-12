@@ -41,7 +41,7 @@ class UserDashboard(ListView):
     """
     model = Idea
     context_object_name = 'ideas'
-    paginate_by = 2
+    paginate_by = 10
     template_name = 'pool/cms/idea_list.html'
 
 
@@ -99,7 +99,7 @@ class CMSBrandList(ListView):
     """
     model = Brand
     context_object_name = 'brands'
-    paginate_by = 2
+    paginate_by = 10
     template_name = 'pool/cms/brand_list.html'
 
 
@@ -212,7 +212,7 @@ class CMSBudgetUpdation(CMSBudgetBase, UpdateView):
 class CMSBudgetList(ListView):
     model = Budget
     context_object_name = 'budgets'
-    paginate_by = 2
+    paginate_by = 10
     template_name = 'pool/cms/budget_list.html'
 
 
@@ -263,7 +263,7 @@ class CMSCategoryUpdation(CMSCategoryBase, UpdateView):
 class CMSCategoryList(ListView):
     model = Category
     context_object_name = 'categories'
-    paginate_by = 2
+    paginate_by = 10
     template_name = 'pool/cms/category_list.html'
 
 
