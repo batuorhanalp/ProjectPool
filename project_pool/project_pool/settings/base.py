@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django_extensions',
     #'rest_framework',
     #'haystack',
+    'reversion',
 
     # user apps
     'pool',
@@ -53,6 +54,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'reversion.middleware.RevisionMiddleware',
 )
 
 TEMPLATE_DIRS = (

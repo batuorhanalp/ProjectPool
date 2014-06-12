@@ -4,6 +4,7 @@ from django.views.generic import (
     UpdateView, DeleteView,
 )
 from django.views.decorators.http import require_http_methods
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -11,11 +12,16 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib import messages
 from django.db.models import Q
+from django.core.urlresolvers import reverse
+from django.contrib.messages.views import SuccessMessageMixin
 from models import (
     Brand,
     Idea,
     Budget,
     Category,
+)
+from reversion.models import (
+    Revision
 )
 
 
@@ -56,7 +62,7 @@ class CMSIdeaList(UserDashboard):
         return context
 
 
-class CMSIdeaCreation(CreateView):
+class CMSIdeaCreation(SuccessMessageMixin, CreateView):
     u"""
     CMS/11-Karbonat Intranet - CMS_0003_Page 1 - Idea Panel
     """
@@ -64,6 +70,13 @@ class CMSIdeaCreation(CreateView):
     fields = ['name', 'summary', 'detail', 'offerred_brands', 'dealt_brands',
               'categories', 'budget']
     template_name = 'pool/cms/idea_creation.html'
+
+    def get_success_url(self):
+        return reverse('pool:cms_idea_list')
+
+    def get_success_message(self, cleaned_data):
+        return '%s isimli fikir silindi. <a href="%s">geri al</a>' %\
+            (cleaned_data['name'], reverse('pool:undo'))
 
 
 class CMSBrandList(ListView):
@@ -76,13 +89,20 @@ class CMSBrandList(ListView):
     template_name = 'pool/cms/brand_list.html'
 
 
-class CMSBrandCreation(CreateView):
+class CMSBrandCreation(SuccessMessageMixin, CreateView):
     u"""
     CMS/13-Karbonat Intranet - CMS_0004_Page 2 - Client Panel
     """
     model = Brand
     fields = ['name']
     template_name = 'pool/cms/brand_creation.html'
+
+    def get_success_url(self):
+        return reverse('pool:cms_brand_list')
+
+    def get_success_message(self, cleaned_data):
+        return '%s isimli marka silindi. <a href="%s">geri al</a>' %\
+            (cleaned_data['name'], reverse('pool:undo'))
 
 
 class CMSBrandDeletion(DeleteView):
@@ -129,10 +149,17 @@ class CMSSettings(UpdateView):
     pass
 
 
-class CMSBudgetCreation(CreateView):
+class CMSBudgetCreation(SuccessMessageMixin, CreateView):
     model = Budget
     fields = ['start', 'end']
     template_name = 'pool/cms/budget_creation.html'
+
+    def get_success_url(self):
+        return reverse('pool:cms_budget_list')
+
+    def get_success_message(self, cleaned_data):
+        return '$%s - $%s isimli butce silindi. <a href="%s">geri al</a>' %\
+            (cleaned_data['start'], cleaned_data['end'], reverse('pool:undo'))
 
 
 class CMSBudgetList(ListView):
@@ -165,10 +192,17 @@ def budget_multiple_deletion(request):
     return redirect("pool:cms_budget_list")
 
 
-class CMSCategoryCreation(CreateView):
+class CMSCategoryCreation(SuccessMessageMixin, CreateView):
     model = Category
     fields = ['name']
     template_name = 'pool/cms/category_creation.html'
+
+    def get_success_url(self):
+        return reverse('pool:cms_category_creation')
+
+    def get_success_message(self, cleaned_data):
+        return '%s isimli kategori silindi. <a href="%s">geri al</a>' %\
+            (cleaned_data['name'], reverse('pool:undo'))
 
 
 class CMSCategoryList(ListView):
@@ -277,3 +311,24 @@ def search(request):
     return render_to_response("pool/cms/idea_list.html", context,
                               context_instance=RequestContext(request)
                               )
+
+
+def undo_last_request(request):
+    """undos the latest changes"""
+    # First, get latest revision saved by this user.
+    revision = Revision.objects.filter(user=request.user).order_by('-date_created')[0]
+
+    ## And revert it, delete=True means we want to delete
+    revision.revert(delete=True)
+
+    # delete it dammit
+    version_set = revision.version_set.all()
+    for version in version_set:
+        version.object.delete()
+
+    # go back to the prev page
+    referrer = request.META.get('HTTP_REFERER')
+    if referrer:
+        return HttpResponseRedirect(referrer)
+    else:
+        return HttpResponseRedirect("/")

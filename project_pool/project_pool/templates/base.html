@@ -18,7 +18,7 @@
         <!-- Header -->
         <div class="header">
             <div class="inner-wrapper">
-                <div class="logo"></div>		
+                <a href="{% url 'pool:user_dashboard' %}"><div class="logo"></div></a>		
                 <div class="right">
                     <div class="row">
                         Merhaba, <b>{{ request.user.first_name|default_if_none_or_empty:request.user.username }}</b>
@@ -118,7 +118,7 @@
     {% if messages %}
     <div class="warning">
         {% for message in messages %}
-        <span>!</span>{{ message }} 
+        <span>!</span>{{ message|safe }} 
         {% endfor %}
     </div>
     {% endif %}

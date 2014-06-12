@@ -32,4 +32,7 @@ urlpatterns = patterns('pool.views',
 
     # search
     url(r'^search/?$', "search", name="search"),
+
+    # undo
+    url(r'^undo/?$', "undo_last_request", name="undo"),
 )
