@@ -22,7 +22,7 @@
                                 <td colspan="7">
                                     <div class="buttons">
                                         <input type="checkbox" id="chck01" name="category_id[]" value="{{ category.id }}">
-                                        <a href="#TODO" title="Güncelle" class="edit"></a>
+                                        <a href="{% url 'pool:cms_category_updation' %}" title="Güncelle" class="edit"></a>
                                         <a href="{% url 'pool:cms_category_delete' pk=category.id %}" title="Sil" class="delete"></a>
                                     </div>
                                     <div class="text">{{ category }}</div>

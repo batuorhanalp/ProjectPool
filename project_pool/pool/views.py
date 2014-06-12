@@ -25,9 +25,9 @@ from reversion.models import (
 )
 
 
-class IdeaDetail(DetailView):
-    model = Idea
-    template_name = 'pool/cms/idea_details.html'
+#class IdeaDetail(DetailView):
+#    model = Idea
+#    template_name = 'pool/cms/idea_details.html'
 
 
 ###
@@ -62,10 +62,7 @@ class CMSIdeaList(UserDashboard):
         return context
 
 
-class CMSIdeaCreation(SuccessMessageMixin, CreateView):
-    u"""
-    CMS/11-Karbonat Intranet - CMS_0003_Page 1 - Idea Panel
-    """
+class CMSIdeaBase(SuccessMessageMixin):
     model = Idea
     fields = ['name', 'summary', 'detail', 'offerred_brands', 'dealt_brands',
               'categories', 'budget']
@@ -74,23 +71,26 @@ class CMSIdeaCreation(SuccessMessageMixin, CreateView):
     def get_success_url(self):
         return reverse('pool:cms_idea_list')
 
+
+class CMSIdeaCreation(CMSIdeaBase, CreateView):
+    u"""
+    CMS/11-Karbonat Intranet - CMS_0003_Page 1 - Idea Panel
+    """
     def get_success_message(self, cleaned_data):
         return '%s isimli fikir yaratildi. <a href="%s">geri al</a>' %\
             (cleaned_data['name'], reverse('pool:undo_and_delete'))
 
 
-class CMSIdeaUpdation(SuccessMessageMixin, UpdateView):
-    model = Idea
-    fields = ['name', 'summary', 'detail', 'offerred_brands', 'dealt_brands',
-              'categories', 'budget']
-    template_name = 'pool/cms/idea_creation.html'
-
-    def get_success_url(self):
-        return reverse('pool:cms_idea_list')
-
+class CMSIdeaUpdation(CMSIdeaBase, UpdateView):
     def get_success_message(self, cleaned_data):
         return '%s isimli fikir guncellendi. <a href="%s">geri al</a>' %\
             (cleaned_data['name'], reverse('pool:undo'))
+
+
+class CMSIdeaDeletion(DeleteView):
+    model = Idea
+    success_url = reverse_lazy('pool:cms_idea_list')
+    template_name = 'pool/cms/deletion.html'
 
 
 class CMSBrandList(ListView):
@@ -103,10 +103,7 @@ class CMSBrandList(ListView):
     template_name = 'pool/cms/brand_list.html'
 
 
-class CMSBrandCreation(SuccessMessageMixin, CreateView):
-    u"""
-    CMS/13-Karbonat Intranet - CMS_0004_Page 2 - Client Panel
-    """
+class CMSBrandBase(SuccessMessageMixin):
     model = Brand
     fields = ['name']
     template_name = 'pool/cms/brand_creation.html'
@@ -114,15 +111,29 @@ class CMSBrandCreation(SuccessMessageMixin, CreateView):
     def get_success_url(self):
         return reverse('pool:cms_brand_list')
 
+
+class CMSBrandCreation(CMSBrandBase, CreateView):
+    u"""
+    CMS/13-Karbonat Intranet - CMS_0004_Page 2 - Client Panel
+    """
     def get_success_message(self, cleaned_data):
         return '%s isimli marka yaratildi. <a href="%s">geri al</a>' %\
+            (cleaned_data['name'], reverse('pool:undo_and_delete'))
+
+
+class CMSBrandUpdation(CMSBrandBase, UpdateView):
+    u"""
+    CMS/13-Karbonat Intranet - CMS_0004_Page 2 - Client Panel
+    """
+    def get_success_message(self, cleaned_data):
+        return '%s isimli marka guncellendi. <a href="%s">geri al</a>' %\
             (cleaned_data['name'], reverse('pool:undo_and_delete'))
 
 
 class CMSBrandDeletion(DeleteView):
     model = Brand
     success_url = reverse_lazy('pool:cms_brand_list')
-    template_name = 'pool/cms/brand_delete.html'
+    template_name = 'pool/cms/deletion.html'
 
 
 @login_required
@@ -163,7 +174,7 @@ class CMSSettings(UpdateView):
     pass
 
 
-class CMSBudgetCreation(SuccessMessageMixin, CreateView):
+class CMSBudgetBase(SuccessMessageMixin):
     model = Budget
     fields = ['start', 'end']
     template_name = 'pool/cms/budget_creation.html'
@@ -171,8 +182,16 @@ class CMSBudgetCreation(SuccessMessageMixin, CreateView):
     def get_success_url(self):
         return reverse('pool:cms_budget_list')
 
+
+class CMSBudgetCreation(CMSBudgetBase, CreateView):
     def get_success_message(self, cleaned_data):
         return '$%s - $%s isimli butce yaratildi. <a href="%s">geri al</a>' %\
+            (cleaned_data['start'], cleaned_data['end'], reverse('pool:undo_and_delete'))
+
+
+class CMSBudgetUpdation(CMSBudgetBase, CreateView):
+    def get_success_message(self, cleaned_data):
+        return '$%s - $%s isimli butce guncellendi. <a href="%s">geri al</a>' %\
             (cleaned_data['start'], cleaned_data['end'], reverse('pool:undo_and_delete'))
 
 
@@ -206,7 +225,7 @@ def budget_multiple_deletion(request):
     return redirect("pool:cms_budget_list")
 
 
-class CMSCategoryCreation(SuccessMessageMixin, CreateView):
+class CMSCategoryBase(SuccessMessageMixin):
     model = Category
     fields = ['name']
     template_name = 'pool/cms/category_creation.html'
@@ -214,8 +233,16 @@ class CMSCategoryCreation(SuccessMessageMixin, CreateView):
     def get_success_url(self):
         return reverse('pool:cms_category_creation')
 
+
+class CMSCategoryCreation(CMSCategoryBase, CreateView):
     def get_success_message(self, cleaned_data):
         return '%s isimli kategori yaratildi. <a href="%s">geri al</a>' %\
+            (cleaned_data['name'], reverse('pool:undo_and_delete'))
+
+
+class CMSCategoryUpdation(CMSCategoryBase, CreateView):
+    def get_success_message(self, cleaned_data):
+        return '%s isimli kategori guncellendi. <a href="%s">geri al</a>' %\
             (cleaned_data['name'], reverse('pool:undo_and_delete'))
 
 
@@ -332,7 +359,7 @@ def undo_last_request(request):
     # First, previous change
     revision = Revision.objects.filter(user=request.user).order_by('-date_created')[1]
 
-    ## And revert it, delete=True means we want to delete
+    # And revert it, delete=True means we want to delete
     revision.revert(delete=True)
 
     version_set = revision.version_set.all()
@@ -352,7 +379,7 @@ def undo_and_delete_last_request(request):
     # First, get latest revision saved by this user.
     revision = Revision.objects.filter(user=request.user).order_by('-date_created')[0]
 
-    ## And revert it, delete=True means we want to delete
+    # And revert it, delete=True means we want to delete
     revision.revert(delete=True)
 
     # delete it dammit

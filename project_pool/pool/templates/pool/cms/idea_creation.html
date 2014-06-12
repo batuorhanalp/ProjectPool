@@ -48,7 +48,8 @@
                     </div>
                     <div class="elements">
                         {% for brand in brands.all %}
-                            <input type="checkbox" name="offerred_brands" id="chckMar{{ brand.id }}" value="{{ brand.id }}">
+                            <input type="checkbox" name="offerred_brands" id="chckMar{{ brand.id }}" value="{{ brand.id }}"
+                            {% if brand in idea.offerred_brands.all %}checked="checked" %}{% endif %}>
                             <label for="chckMar{{ brand.id }}">{{ brand.name }}</label>
                         {% endfor %}
                     </div>
@@ -59,7 +60,8 @@
                     </div>
                     <div class="elements">
                         {% for brand in brands.all %}
-                            <input type="checkbox" name="dealt_brands" id="p_chckMar_{{ brand.id }}" value="{{ brand.id }}">
+                            <input type="checkbox" name="dealt_brands" id="p_chckMar_{{ brand.id }}" value="{{ brand.id }}"
+                            {% if brand in idea.dealt_brands.all %}checked="checked" %}{% endif %}>
                             <label for="p_chckMar_{{ brand.id }}">{{ brand.name }}</label>
                         {% endfor %}
                     </div>
@@ -71,7 +73,8 @@
                     </div>
                     <div class="elements">
                         {% for category in categories.all %}
-                            <input type="checkbox" name="categories" id="chckKat_{{ category.id }}" value="{{ category.id }}">
+                            <input type="checkbox" name="categories" id="chckKat_{{ category.id }}" value="{{ category.id }}"
+                            {% if category in idea.categories.all %}checked="checked"{% endif %}>
                             <label for="chckKat_{{ category.id }}">{{ category.name }}</label>
                         {% endfor %}
                     </div>
@@ -85,7 +88,7 @@
                         <select name="budget">
                             <option value="" selected="" disabled="disabled">Seçiniz</option>
                             {% for budget in budgets.all %}
-                                <option value="{{ budget.id }}">{{ budget }}</option>
+                            <option value="{{ budget.id }}" {% ifequal budget idea.budget %}selected="selected"{% endifequal %} >{{ budget }}</option>
                             {% endfor %}
                         </select>
                     </div>

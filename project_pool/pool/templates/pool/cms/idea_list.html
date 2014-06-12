@@ -35,8 +35,8 @@
                         {% if in_cms %}
                             <div class="buttons">
                                 <input type="checkbox" id="chck_{{ idea.id }}">
-                                <a href="#TODO" title="Güncelle" class="edit"></a>
-                                <a href="#TODO" title="Sil" class="delete"></a>
+                                <a href="{% url 'pool:cms_idea_updation' pk=idea.pk %}" title="Güncelle" class="edit"></a>
+                                <a href="{% url 'pool:cms_idea_deletion' pk=idea.pk %}" title="Sil" class="delete"></a>
                             </div>
                         {% endif %}
                         <div class="text long">
@@ -48,9 +48,9 @@
                                 <a class="expand" title="Proje detayı"></a>
                                 <a class="settings" title=""></a>
                                 <div class="settingsMenu">
-                                    <a title="" class="edit">Fikri düzenle</a>
+                                    <a href="{% url 'pool:cms_idea_updation' pk=idea.pk %}" class="edit">Fikri düzenle</a>
                                     <span></span>
-                                    <a title="" class="delete">Fikri sil</a>
+                                    <a href="{% url 'pool:cms_idea_deletion' pk=idea.pk %}" class="delete">Fikri sil</a>
                                 </div>
                             </div>
                         </div>
