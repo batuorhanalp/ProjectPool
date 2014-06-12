@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     # vendor apps
     'django_extensions',
     #'rest_framework',
+    #'haystack',
 
     # user apps
     'pool',
@@ -139,3 +140,13 @@ REST_FRAMEWORK = {
     )
     #'PAGINATE_BY': 10
 }
+
+###################################
+# Haystack Search Settings        #
+###################################
+#HAYSTACK_CONNECTIONS = {
+#    'default': {
+#        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+#        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+#    },
+#}

@@ -6,6 +6,9 @@ from django.views.decorators.http import require_http_methods
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.db.models import Q
 from models import (
     Brand,
     Idea,
@@ -194,3 +197,60 @@ def category_multiple_deletion(request):
     for category in categories:
         category.delete()
     return redirect("pool:cms_category_list")
+
+
+@login_required
+@require_http_methods(["GET"])
+def search(request):
+    """searches the entire app"""
+    # import pdb
+    # pdb.set_trace()
+
+    # get variables
+    offerred_brand_ids = request.GET.getlist('offerred_brands')
+    dealt_brand_ids = request.GET.getlist('dealt_brands')
+    category_ids = request.GET.getlist('categories')
+    budget_ids = request.GET.getlist('budgets')
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    q = request.GET.get('q')
+
+    # build filters
+    objects = Idea.objects
+    if offerred_brand_ids:
+        objects = objects.filter(offerred_brands__id__in=offerred_brand_ids)
+
+    if dealt_brand_ids:
+        objects = objects.filter(dealt_brands__id__in=dealt_brand_ids)
+
+    if category_ids:
+        objects = objects.filter(categories__id__in=category_ids)
+
+    if budget_ids:
+        objects = objects.filter(budget__id__in=budget_ids)
+
+    if start_date and end_date:
+        # objects = objects.filter(start)
+        pass
+
+    if q:
+        words = q.strip().split(" ")
+        for word in words:
+            objects = objects.filter(Q(name__icontains=word) |
+                                     Q(summary__icontains=word) |
+                                     Q(detail__icontains=q))
+
+    ideas = objects.all()
+    # send it to the template
+    context = {
+        "ideas": ideas, "budget_ids": [int(x) for x in budget_ids],
+        "offerred_brand_ids": [int(x) for x in offerred_brand_ids],
+        "dealt_brand_ids": [int(x) for x in dealt_brand_ids],
+        "category_ids": [int(x) for x in category_ids],
+        "start_date": start_date,
+        "end_date": end_date,
+        "q": q
+    }
+    return render_to_response("pool/cms/idea_list.html", context,
+                              context_instance=RequestContext(request)
+                              )

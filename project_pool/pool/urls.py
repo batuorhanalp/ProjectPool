@@ -29,4 +29,7 @@ urlpatterns = patterns('pool.views',
     url(r'^cms/yeni-kategori/?$', login_required(CMSCategoryCreation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_category_creation"),
     url(r'^cms/kategori-sil/?$', "category_multiple_deletion", name="cms_category_multiple_delete"),
     url(r'^cms/kategori-sil/(?P<pk>[a-zA-Z0-9]+)/$', login_required(CMSCategoryDeletion.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_category_delete'),
+
+    # search
+    url(r'^search/?$', "search", name="search"),
 )
