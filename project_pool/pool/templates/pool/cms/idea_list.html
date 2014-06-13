@@ -23,7 +23,7 @@
             {% for idea in ideas %}
                 <!-- One Project -->
                 <tr class="title">
-                    <td colspan="2">{{ idea.name }}</td>
+                    <td colspan="2">{{ idea.name|truncatechars:25 }}</td>
                     <td colspan="1">{{ idea.offerred_brands.all|join:", " }}</td>
                     <td colspan="1">{{ idea.dealt_brands.all|join:", " }}</td>
                     <td colspan="1">{{ idea.categories.all|join:", " }}</td>
