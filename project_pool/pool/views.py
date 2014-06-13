@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.views.generic import (
     ListView, DetailView, CreateView,
-    UpdateView, DeleteView,
+    UpdateView, DeleteView, FormView,
 )
 from django.views.decorators.http import require_http_methods
 from django.http import HttpResponseRedirect
@@ -14,6 +14,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.core.urlresolvers import reverse
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.forms import UserCreationForm
 from models import (
     Brand,
     Idea,
@@ -25,14 +26,15 @@ from reversion.models import (
 )
 
 
-#class IdeaDetail(DetailView):
-#    model = Idea
-#    template_name = 'pool/cms/idea_details.html'
-
-
 ###
 # USER
 ###
+
+
+class UserCreation(FormView):
+    template_name = 'pool/user_creation.html'
+    form_class = UserCreationForm
+    success_url = '/'
 
 
 class UserDashboard(ListView):
