@@ -64,6 +64,18 @@ class CMSIdeaList(UserDashboard):
         return context
 
 
+class UserIdeaList(UserDashboard):
+    u"""
+    CMS/10-Karbonat Intranet - CMS_0000_Page 1 - Idea
+    """
+    template_name = 'pool/cms/idea_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(UserIdeaList, self).get_context_data(**kwargs)
+        context['in_cms'] = False
+        return context
+
+
 class CMSIdeaBase(SuccessMessageMixin):
     model = Idea
     fields = ['name', 'summary', 'detail', 'offerred_brands', 'dealt_brands',

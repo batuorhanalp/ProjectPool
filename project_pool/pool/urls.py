@@ -7,6 +7,9 @@ from views import *
 urlpatterns = patterns('pool.views',
     url(r'^/?$', login_required(UserDashboard.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="user_dashboard"),
 
+    #User ideas
+    url(r'^fikirler/?$', login_required(UserIdeaList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="user_idea_list"),
+
     # Idea
     url(r'^cms/fikirler/?$', login_required(CMSIdeaList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_idea_list"),
     url(r'^cms/yeni-fikir/?$', login_required(CMSIdeaCreation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_idea_creation"),

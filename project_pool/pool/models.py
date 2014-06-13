@@ -50,9 +50,9 @@ class Idea(models.Model):
     summary = models.CharField(max_length=255, blank=True)
     detail = models.TextField(blank=True)
     offerred_brands = models.ManyToManyField('Brand', related_name="+",
-                                             null=True)
+                                             null=True, blank=True)
     dealt_brands = models.ManyToManyField('Brand', related_name="ref+",
-                                          null=True)
+                                          null=True, blank=True)
     categories = models.ManyToManyField('Category', related_name="ideas",
                                         null=True)
     budget = models.ForeignKey('Budget', null=True)
