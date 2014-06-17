@@ -14,7 +14,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.core.urlresolvers import reverse
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from models import (
     Brand,
     Idea,
@@ -23,6 +23,9 @@ from models import (
 )
 from reversion.models import (
     Revision
+)
+from forms import (
+    UserForm
 )
 
 
@@ -33,8 +36,27 @@ from reversion.models import (
 
 class UserCreation(FormView):
     template_name = 'pool/user_creation.html'
-    form_class = UserCreationForm
+    form_class = UserForm
     success_url = '/'
+
+    def form_valid(self, form):
+        """save the form now"""
+        if form.cleaned_data['permission'] == "user":
+            # admin
+            User.objects.create_user(
+                form.cleaned_data['username'],
+                form.cleaned_data['email'],
+                form.cleaned_data['password1']
+            )
+        elif form.cleaned_data['permission'] == "admin":
+            # user
+            User.objects.create_superuser(
+                form.cleaned_data['username'],
+                form.cleaned_data['email'],
+                form.cleaned_data['password1']
+            )
+
+        return super(UserCreation, self).form_valid(form)
 
 
 class UserDashboard(ListView):
