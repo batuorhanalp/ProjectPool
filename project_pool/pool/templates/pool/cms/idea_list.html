@@ -24,9 +24,9 @@
                 <!-- One Project -->
                 <tr class="title">
                     <td colspan="2">{{ idea.name|truncatechars:25 }}</td>
-                    <td colspan="1">{{ idea.offerred_brands.all|join:", " }}</td>
-                    <td colspan="1">{{ idea.dealt_brands.all|join:", " }}</td>
-                    <td colspan="1">{{ idea.categories.all|join:", " }}</td>
+                    <td colspan="1">{{ idea.offerred_brands.all|join:", "|truncatechars:25 }}</td>
+                    <td colspan="1">{{ idea.dealt_brands.all|join:", "|truncatechars:25 }}</td>
+                    <td colspan="1">{{ idea.categories.all|join:", "|truncatechars:25 }}</td>
                     <td colspan="1">{{ idea.budget.all }}</td>
                     <td colspan="1">{{ idea.date|date:"d.m.Y" }}</td>
                 </tr>
@@ -41,8 +41,8 @@
                         {% endif %}
                         <div class="text long">
                             <div class="left">
-                                <span>{{ idea.summary }}</span>
-                                <span class="detail">{{ idea.detail }}</span>
+                                <span>{{ idea.summary|urlizetrunc:15 }}</span>
+                                <span class="detail">{{ idea.detail|urlize|linebreaksbr }}</span>
                             </div>
                             <div class="right">
                                 <a class="expand" title="Proje detayı"></a>
