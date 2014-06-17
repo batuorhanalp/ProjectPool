@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form action="" method="post">{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" />
-</form>
+<!-- Content -->
+<div class="content">
+	<div class="inner-wrapper">
+    <!-- Sub Menu -->
+    {% with current_sub_page='users' %}
+    {% include 'pool/cms/common/sub_menu_for_cms.html' %}
+    {% endwith %}
+    <!-- Sub Menu END -->
+
+    <form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" />
+    </form>
+	</div>
+</div>
+<!-- Content END -->
 {% endblock %}

@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.views.generic import (
-    ListView, DetailView, CreateView,
+    ListView, CreateView,
     UpdateView, DeleteView, FormView,
 )
 from django.views.decorators.http import require_http_methods
@@ -15,6 +15,7 @@ from django.db.models import Q
 from django.core.urlresolvers import reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
+from django.contrib.admin.views.decorators import staff_member_required
 from models import (
     Brand,
     Idea,
@@ -62,8 +63,7 @@ class UserCreation(SuccessMessageMixin, FormView):
         return '%s kullanicisi yaratildi. <a href="%s">geri al</a>' %\
             (cleaned_data['username'], reverse('pool:undo'))
 
-
-#class CMSUserUpdation(CMSBrandBase, UpdateView):
+# class CMSUserUpdation(CMSBrandBase, UpdateView):
 #    def get_success_message(self, cleaned_data):
 #        return '%s isimli marka guncellendi. <a href="%s">geri al</a>' %\
 #            (cleaned_data['name'], reverse('pool:undo'))
@@ -83,6 +83,7 @@ class CMSUserDeletion(DeleteView):
 
 
 @login_required
+@staff_member_required
 @require_http_methods(["POST"])
 def user_multiple_deletion(request):
     """
@@ -145,7 +146,7 @@ class CMSIdeaBase(SuccessMessageMixin):
     template_name = 'pool/cms/idea_creation.html'
 
     def get_success_url(self):
-        return reverse('pool:cms_idea_list')
+        return reverse('pool:user_idea_list')
 
 
 class CMSIdeaCreation(CMSIdeaBase, CreateView):
@@ -230,6 +231,7 @@ def brand_multiple_deletion(request):
 
 
 @login_required
+@staff_member_required
 def settings_view(request):
     budgets = Budget.objects.all()
     categories = Category.objects.all()
@@ -299,6 +301,7 @@ class CMSBudgetDeletion(DeleteView):
 
 
 @login_required
+@staff_member_required
 @require_http_methods(["POST"])
 def budget_multiple_deletion(request):
     """
@@ -350,6 +353,7 @@ class CMSCategoryDeletion(DeleteView):
 
 
 @login_required
+@staff_member_required
 @require_http_methods(["POST"])
 def category_multiple_deletion(request):
     """

@@ -24,6 +24,10 @@
             <div class="right">
                 <a href="{% url 'pool:cms_budget_creation' %}" title="" class="new">YENİ BUTCE</a>
             </div>
+        {% elif 'users' == current_sub_page %}
+            <div class="right">
+                <a href="{% url 'pool:user_creation' %}" title="" class="new">YENİ KULLANICI</a>
+            </div>
         {% elif 'settings' == current_sub_page %}
         {% endif %}
     </div>
