@@ -34,7 +34,7 @@ from forms import (
 ###
 
 
-class UserCreation(FormView):
+class UserCreation(SuccessMessageMixin, FormView):
     template_name = 'pool/user_creation.html'
     form_class = UserForm
     success_url = '/'
@@ -57,6 +57,46 @@ class UserCreation(FormView):
             )
 
         return super(UserCreation, self).form_valid(form)
+
+    def get_success_message(self, cleaned_data):
+        return '%s kullanicisi yaratildi. <a href="%s">geri al</a>' %\
+            (cleaned_data['username'], reverse('pool:undo'))
+
+
+#class CMSUserUpdation(CMSBrandBase, UpdateView):
+#    def get_success_message(self, cleaned_data):
+#        return '%s isimli marka guncellendi. <a href="%s">geri al</a>' %\
+#            (cleaned_data['name'], reverse('pool:undo'))
+
+
+class UserList(ListView):
+    model = User
+    context_object_name = 'users'
+    paginate_by = 10
+    template_name = 'pool/user_list.html'
+
+
+class CMSUserDeletion(DeleteView):
+    model = User
+    success_url = reverse_lazy('pool:user_list')
+    template_name = 'pool/cms/deletion.html'
+
+
+@login_required
+@require_http_methods(["POST"])
+def user_multiple_deletion(request):
+    """
+    delete multiple users at once.
+    get user_id array as request param
+    """
+    # TODO: get ile emin misiniz ekrani yap, post ile sil
+    # if request.method == "POST":
+
+    user_ids = request.POST.getlist('user_id[]')
+    users = User.objects.filter(id__in=user_ids)
+    for user in users:
+        user.delete()
+    return redirect("pool:user_list")
 
 
 class UserDashboard(ListView):

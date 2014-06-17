@@ -9,6 +9,10 @@ urlpatterns = patterns('pool.views',
 
     # Users
     url(r'^kullanici-yarat/?$', login_required(UserCreation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="user_creation"),
+    url(r'^kullanicilar/?$', login_required(UserList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="user_list"),
+    url(r'^kullanici-sil/?$', "user_multiple_deletion", name="cms_user_multiple_delete"),
+    url(r'^kullanici-sil/(?P<pk>[a-zA-Z0-9]+)/$', login_required(CMSUserDeletion.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_user_delete'),
+    #url(r'^kullanici-guncelle/(?P<pk>[a-zA-Z0-9]+)/$', login_required(CMSUserUpdation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_user_updation'),
 
     # User ideas
     url(r'^fikirler/?$', login_required(UserIdeaList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="user_idea_list"),

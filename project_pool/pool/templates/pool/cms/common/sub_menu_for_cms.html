@@ -5,6 +5,8 @@
             <span class="seperator">|</span>
         <a href="{% url 'pool:cms_brand_list' %}" title=""{% if 'brands' == current_sub_page %} class="active"{% endif %}>MARKALAR</a>
             <span class="seperator">|</span>
+        <a href="{% url 'pool:user_list' %}" title=""{% if 'users' == current_sub_page %} class="active"{% endif %}>KULLANICILAR</a>
+            <span class="seperator">|</span>
         <a href="{% url 'pool:settings' %}" title=""{% if 'settings' == current_sub_page %} class="active"{% endif %}>AYARLAR</a>
         {% if 'ideas' == current_sub_page %}
             <div class="right">
