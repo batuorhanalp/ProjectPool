@@ -1,0 +1,57 @@
+{% load static %}
+{% load i18n %}
+{% load account %}
+{% load url from future %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Proje Havuzu</title>
+	<meta charset="UTF-8">
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{% static 'pool/css/style.css' %}">
+</head>
+<body class="login">
+    <div class="login">
+        <div class="logo"></div>
+        {% comment %}
+        {% if socialaccount.providers  %}
+
+        <p>{% blocktrans with site.name as site_name %}Please sign in with one
+        of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+        for a {{site_name}} account and sign in below:{% endblocktrans %}</p>
+
+        <div class=" socialaccount_ballot">
+
+        <ul class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        </ul>
+
+        <div class="login-or">{% trans 'or' %}</div>
+
+        </div>
+
+        {% include "socialaccount/snippets/login_extra.html" %}
+
+        {% else %}
+        <p>{% blocktrans %}If you have not created an account yet, then please
+        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+        {% endif %}
+
+        {% endcomment %}
+
+        <form class="textfield-wrapper" method="POST" action="{% url 'account_login' %}">{% csrf_token %}
+            <input id="id_login" autofocus="autofocus" type="text" name="login" value="" placeholder="EPOSTA ADRESİ YA DA K.ADI">
+            <input id="id_password" type="password" name="password" value="" placeholder="PAROLA">
+            <input id="id_remember" name="remember" type="checkbox"><label for="id_remember">Beni hatırla</label>
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            {% comment %}<a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>{% endcomment %}
+            <input type="submit" name="" value="GİRİŞ">
+        </form>
+
+    </div>
+</body>
+</html>
+
