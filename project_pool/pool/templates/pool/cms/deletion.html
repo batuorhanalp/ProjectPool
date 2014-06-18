@@ -1,6 +1,10 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block content %}
+{% block content %}    
+<!-- Content -->
+<div class="content">
+	<div class="inner-wrapper">
+		<br>
     {% if messages %}
     <div class="warning">
         {% for message in messages %}
@@ -8,8 +12,14 @@
         {% endfor %}
     </div>
     {% endif %}
-<form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm" />
+		<br>
+		<form action="" method="post">{% csrf_token %}
+    	<p>Are you sure you want to delete "{{ object }}"?</p>
+    	<br>
+    	<input type="submit" value="Confirm" />
+		</form>
+	</div>
+</div>
 </form>
+<!-- Content END -->
 {% endblock %}
