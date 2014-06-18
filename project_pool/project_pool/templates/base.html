@@ -61,7 +61,7 @@
                             <div class="list">
                                 <div class="scroller">
                                     {% for brand in brands.all %}
-                                    <div class="check"><input type="checkbox" {% if brand.id in offerred_brand_ids %}checked="checked"{% endif %} data-id="{{ brand.id }}" id="chckBrand{{ forloop.counter }}" name="offerred_brands" value="{{ brand.id }}"/><label for="chckBrand{{ forloop.counter }}">{{ brand.name }}</label></div>
+                                    <div class="check"><input type="checkbox" {% if brand.id in offerred_brand_ids %}checked="checked"{% endif %} data-id="{{ brand.id }}" id="chckBrand1{{ forloop.counter }}" name="offerred_brands" value="{{ brand.id }}"/><label for="chckBrand{{ forloop.counter }}">{{ brand.name }}</label></div>
                                     {% endfor %}
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                             <div class="list">
                                 <div class="scroller">
                                     {% for brand in brands.all %}
-                                        <div class="check"><input type="checkbox" {% if brand.id in dealt_brand_ids %}checked="checked"{% endif %} data-id="{{ brand.id }}" id="chckBrand{{ forloop.counter }}" name="dealt_brands" value="{{ brand.id }}"/><label for="chckBrand{{ forloop.counter }}">{{ brand.name }}</label></div>
+                                        <div class="check"><input type="checkbox" {% if brand.id in dealt_brand_ids %}checked="checked"{% endif %} data-id="{{ brand.id }}" id="chckBrand2{{ forloop.counter }}" name="dealt_brands" value="{{ brand.id }}"/><label for="chckBrand{{ forloop.counter }}">{{ brand.name }}</label></div>
                                     {% endfor %}
                                 </div>
                             </div>

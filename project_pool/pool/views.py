@@ -272,7 +272,7 @@ class CMSBudgetBase(SuccessMessageMixin):
     template_name = 'pool/cms/budget_creation.html'
 
     def get_success_url(self):
-        return reverse('pool:cms_budget_list')
+        return reverse('pool:settings')
 
 
 class CMSBudgetCreation(CMSBudgetBase, CreateView):
@@ -324,7 +324,7 @@ class CMSCategoryBase(SuccessMessageMixin):
     template_name = 'pool/cms/category_creation.html'
 
     def get_success_url(self):
-        return reverse('pool:cms_category_creation')
+        return reverse('pool:settings')
 
 
 class CMSCategoryCreation(CMSCategoryBase, CreateView):

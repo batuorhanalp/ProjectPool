@@ -15,12 +15,58 @@
         <span>!</span>{{ message|safe }} 
         {% endfor %}
     </div>
-    {% endif %}
+    {% endif %} 
 
+    <!-- Add User -->
     <form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" />
+        <div class="row">
+            <div class="title">
+                Adı Soyadı
+            </div>
+            <div class="elements">
+                {{ form.username }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="title">
+                Eposta adresi
+            </div>
+            <div class="elements">
+                {{ form.email }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="title">
+                Parola
+            </div>
+            <div class="elements">
+                {{ form.password1 }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="title">
+                Parola (tekrar)
+            </div>
+            <div class="elements">
+                {{ form.password1 }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="title">
+                Yetki
+            </div>
+            <div class="elements">
+                {{ form.permission }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="title">&nbsp;</div>
+            <div class="elements">
+                <input type="submit" name="" value="KULLANICIYI EKLE">
+            </div>
+        </div>
     </form>
+    <!-- Add User END -->
 	</div>
 </div>
 <!-- Content END -->
