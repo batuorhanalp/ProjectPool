@@ -142,7 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
 
 REDIRECT_FIELD_NAME = 's'
-LOGIN_URL = '/giris-yap'
+LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 
 ###################################

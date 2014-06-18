@@ -119,13 +119,6 @@
         <!-- Search END-->
     {% endblock %}
 
-    {% if messages %}
-    <div class="warning">
-        {% for message in messages %}
-        <span>!</span>{{ message|safe }} 
-        {% endfor %}
-    </div>
-    {% endif %}
 
     {% block content %}No content{% endblock %}
 
