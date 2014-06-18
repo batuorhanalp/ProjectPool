@@ -38,7 +38,7 @@ from forms import (
 class UserCreation(SuccessMessageMixin, FormView):
     template_name = 'pool/user_creation.html'
     form_class = UserForm
-    success_url = '/'
+    success_url = '/kullanicilar'
 
     def form_valid(self, form):
         """save the form now"""
