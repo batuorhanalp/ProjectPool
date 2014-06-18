@@ -14,6 +14,13 @@
                     {% endfor %}
                 {% endif %}
             </div>
+    {% if messages %}
+    <div class="warning">
+        {% for message in messages %}
+        <span>!</span>{{ message|safe }} 
+        {% endfor %}
+    </div>
+    {% endif %}
 
             <!-- Add Idea -->
             <form action="" method="POST">{% csrf_token %}

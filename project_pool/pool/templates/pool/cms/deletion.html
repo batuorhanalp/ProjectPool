@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if messages %}
+    <div class="warning">
+        {% for message in messages %}
+        <span>!</span>{{ message|safe }} 
+        {% endfor %}
+    </div>
+    {% endif %}
 <form action="" method="post">{% csrf_token %}
     <p>Are you sure you want to delete "{{ object }}"?</p>
     <input type="submit" value="Confirm" />

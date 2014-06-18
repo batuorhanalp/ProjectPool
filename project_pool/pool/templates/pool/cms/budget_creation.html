@@ -10,6 +10,13 @@
         {% endwith %}
 		<!-- Sub Menu END -->
 		<br>
+    {% if messages %}
+    <div class="warning">
+        {% for message in messages %}
+        <span>!</span>{{ message|safe }} 
+        {% endfor %}
+    </div>
+    {% endif %}
 		<br>
 		<!-- Add Client -->
 		<form action="" method="post">

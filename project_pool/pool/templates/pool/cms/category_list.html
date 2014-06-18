@@ -8,11 +8,13 @@
                 {% include 'pool/cms/common/sub_menu_for_cms.html' %}
             {% endwith %}
 
-            {% comment %}
-            <div class="warning">
-                <span>!</span> 3 öğenin silme işlemi tamamlandı. <a href="#" title="">Geri al</a>
-            </div>
-            {% endcomment %}
+    {% if messages %}
+    <div class="warning">
+        {% for message in messages %}
+        <span>!</span>{{ message|safe }} 
+        {% endfor %}
+    </div>
+    {% endif %}
 
             <form action="{% url 'pool:cms_category_multiple_delete' %}" method="post">{% csrf_token %}
                 <table class="grid">
