@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Auth related.
+                       (r'^accounts/', include('allauth.urls')),
     url(r'^giris-yap/?$', 'django.contrib.auth.views.login', {
         'template_name': 'pool/auth/login.html',
         'redirect_field_name': settings.REDIRECT_FIELD_NAME

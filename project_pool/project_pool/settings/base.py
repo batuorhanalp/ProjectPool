@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+SITE_ID = 1
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -36,12 +37,17 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # vendor apps
     'django_extensions',
     #'rest_framework',
     #'haystack',
     'reversion',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     # user apps
     'pool',
@@ -75,6 +81,18 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     #'sekizai.context_processors.sekizai',
     'django.core.context_processors.request',
+
+    # allauth specific context processors
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
 )
 
 ROOT_URLCONF = 'project_pool.urls'
@@ -152,3 +170,6 @@ REST_FRAMEWORK = {
 #        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
 #    },
 #}
+
+# all auth
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
