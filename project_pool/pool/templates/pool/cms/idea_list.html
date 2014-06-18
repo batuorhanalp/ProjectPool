@@ -45,8 +45,10 @@
                                 <a href="{% url 'pool:cms_idea_updation' pk=idea.pk %}" title="Güncelle" class="edit"></a>
                                 <a href="{% url 'pool:cms_idea_deletion' pk=idea.pk %}" title="Sil" class="delete"></a>
                             </div>
-                        {% endif %}
+                        <div class="text long admin">
+                        {% else %}
                         <div class="text long">
+                        {% endif %}
                             <div class="left">
                                 <span>{{ idea.summary|urlizetrunc:15 }}</span>
                                 <span class="detail">{{ idea.detail|urlize|linebreaksbr }}</span>

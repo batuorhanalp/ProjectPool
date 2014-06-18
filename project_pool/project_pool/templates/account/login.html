@@ -43,6 +43,7 @@
         <form class="textfield-wrapper" method="POST" action="{% url 'account_login' %}">{% csrf_token %}
             <input id="id_login" autofocus="autofocus" type="text" name="login" value="" placeholder="EPOSTA ADRESİ YA DA K.ADI">
             <input id="id_password" type="password" name="password" value="" placeholder="PAROLA">
+            <br>
             <input id="id_remember" name="remember" type="checkbox"><label for="id_remember">Beni hatırla</label>
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
