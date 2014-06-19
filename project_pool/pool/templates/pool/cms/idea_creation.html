@@ -22,6 +22,19 @@
     </div>
     {% endif %} 
 
+        {% if form.errors %}
+        <div class="warning">
+            {% for error in form.errors %}
+                {% if error == "name" %}
+                    <span>!</span>Fikir adının doldurulması zorunludur. <br>
+                {% elif error == "categories" %}
+                    <span>!</span>En az bir kategori seçmelisiniz. <br>
+                {% elif error == "budget" %}
+                    <span>!</span>Fikrin bütçesini belirtmelisiniz. <br>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %} 
             <!-- Add Idea -->
             <form action="" method="POST">{% csrf_token %}
                 <div class="row">
@@ -29,7 +42,7 @@
                         Fikir adı
                     </div>
                     <div class="elements">
-                        {{ form.name }}{{ form.name.errors }}
+                        {{ form.name }}
                     </div>
                 </div>
                 <div class="row">
@@ -60,7 +73,6 @@
                             <label for="chckMar{{ brand.id }}">{{ brand.name }}</label>
                         {% endfor %}
                     </div>
-                    {{ form.offerred_brands.errors }}
                 </div>
                 <div class="row">
                     <div class="title">
@@ -73,7 +85,6 @@
                             <label for="p_chckMar_{{ brand.id }}">{{ brand.name }}</label>
                         {% endfor %}
                     </div>
-                    {{ form.dealt_brands.errors }}
                 </div>
                 {% get_categories as categories %}
                 <div class="row">
@@ -88,7 +99,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                {{ form.categories.errors }}
+                
                 {% get_budgets as budgets %}
                 <div class="row">
                     <div class="title">
@@ -102,7 +113,6 @@
                             {% endfor %}
                         </select>
                     </div>
-                    {{ form.budget.errors }}
                 </div>
                 <div class="row">
                     <div class="title">&nbsp;</div>
