@@ -29,7 +29,7 @@
                                         {% endcomment %}
                                         <a href="{% url 'pool:cms_user_delete' pk=user.id %}" title="Sil" class="delete"></a>
                                     </div>
-                                    <div class="text">{{ user }}</div>
+                                    <div class="text">{{ user.get_full_name }}</div>
                                 </td>
                             </tr>
                             <tr class="space"><td colspan="7"></td></tr>

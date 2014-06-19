@@ -29,10 +29,18 @@
     <form action="" method="post">{% csrf_token %}
         <div class="row">
             <div class="title">
-                Adı Soyadı
+                Kullanıcı Adı
             </div>
             <div class="elements">
                 {{ form.username }}{{ form.username.errors }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="title">
+                Adı Soyadı
+            </div>
+            <div class="elements">
+                {{ form.name }}{{ form.name.errors }}
             </div>
         </div>
         <div class="row">

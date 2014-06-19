@@ -44,18 +44,26 @@ class UserCreation(SuccessMessageMixin, FormView):
         """save the form now"""
         if form.cleaned_data['permission'] == "user":
             # admin
-            User.objects.create_user(
+            user = User.objects.create_user(
                 form.cleaned_data['username'],
                 form.cleaned_data['email'],
                 form.cleaned_data['password1']
             )
         elif form.cleaned_data['permission'] == "admin":
             # user
-            User.objects.create_superuser(
+            user = User.objects.create_superuser(
                 form.cleaned_data['username'],
                 form.cleaned_data['email'],
                 form.cleaned_data['password1']
             )
+        name_arr = form.cleaned_data['name'].split(" ")
+        if len(name_arr) >= 2:
+            user.first_name = name_arr[0]
+            user.last_name = name_arr[1]
+        elif len(name_arr) == 1:
+            user.first_name = name_arr[0]
+
+        user.save()
 
         return super(UserCreation, self).form_valid(form)
 
