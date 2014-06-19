@@ -29,7 +29,7 @@
                 </div>
                 <div class="elements">
                     {% for budget in budgets %}
-                    <input type="checkbox" name="budget_id[]" value="{{ budget.id }}" id="chck{{ budget.id }}" ><label for="chck{{ budget.pk }}">{{ budget }}</label>
+                    <input type="checkbox" name="budget_id[]" value="{{ budget.id }}" id="chckBudget{{ budget.id }}" ><label for="chckBudget{{ budget.pk }}">{{ budget }}</label>
                     {% endfor %}
                     <br>
                     <input type="submit" href="#" title="" class="roll-back" value="Seçili bütçe aralıklarını sil" />
@@ -55,7 +55,7 @@
                 </div>
                 <div class="elements">
                     {% for category in categories %}
-                    <input type="checkbox" name="category_id[]" value="{{ category.id }}" id="chck{{ category.id }}" ><label for="chck{{ category.pk }}">{{ category.name }}</label>
+                    <input type="checkbox" name="category_id[]" value="{{ category.id }}" id="chckCategory{{ category.id }}" ><label for="chckCategory{{ category.pk }}">{{ category.name }}</label>
                     {% endfor %}
                     <br>
                     <input type="submit" href="#" title="" class="roll-back" value="Seçili kategorileri sil" />
