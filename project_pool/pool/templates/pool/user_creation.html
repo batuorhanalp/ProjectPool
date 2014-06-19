@@ -17,6 +17,14 @@
     </div>
     {% endif %} 
 
+    {% if form.non_field_errors %}
+    <div class="warning">
+        {% for error in form.non_field_errors %}
+        <span>!</span>{{ error|safe }} 
+        {% endfor %}
+    </div>
+    {% endif %} 
+
     <!-- Add User -->
     <form action="" method="post">{% csrf_token %}
         <div class="row">
@@ -24,7 +32,7 @@
                 Adı Soyadı
             </div>
             <div class="elements">
-                {{ form.username }}
+                {{ form.username }}{{ form.username.errors }}
             </div>
         </div>
         <div class="row">
@@ -32,7 +40,7 @@
                 Eposta adresi
             </div>
             <div class="elements">
-                {{ form.email }}
+                {{ form.email }}{{ form.email.errors }}
             </div>
         </div>
         <div class="row">
@@ -40,7 +48,7 @@
                 Parola
             </div>
             <div class="elements">
-                {{ form.password1 }}
+                {{ form.password1 }}{{ form.password1.errors }}
             </div>
         </div>
         <div class="row">
@@ -48,7 +56,7 @@
                 Parola (tekrar)
             </div>
             <div class="elements">
-                {{ form.password2 }}
+                {{ form.password2 }}{{ form.password2.errors }}
             </div>
         </div>
         <div class="row">
@@ -56,7 +64,7 @@
                 Yetki
             </div>
             <div class="elements">
-                {{ form.permission }}
+                {{ form.permission }}{{ form.permission.errors }}
             </div>
         </div>
         <div class="row">
