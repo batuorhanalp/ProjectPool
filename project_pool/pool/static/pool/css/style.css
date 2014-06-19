@@ -83,7 +83,7 @@ body.login{background: #ffd018;}
 .grid .description .text.long .left .detail {display: none;width:100%;}
 .grid .description .text.long .left {display: block;float: left;width: 860px;}
 .grid .description .text.long.admin .left { width:845px;}
-.grid .description .text.long .left span {margin-top: 10px;display: block;float: left;}
+.grid .description .text.long .left span {margin-top: 10px;display: block;float: left;line-height: 20px;}
 .grid .description .text.long .right {display: block;float: right;width: 65px;height: 100%;position: relative;}
 .grid .description .text.long .right a {width: 65px;height: 65px;display: block;float: left;position: relative;}
 .grid .description .text.long .right .expand {background: url(../images/btn-updown.png) 18px -43px no-repeat;}
