@@ -18,65 +18,68 @@
     {% endif %}
 
 		<!-- Projects -->
-		<table class="grid">
-			<tr>
-				<th colspan="2">Fikir adı</th>
-				<th colspan="1">Sunulan Markalar</th>
-				<th colspan="1">Satılan Markalar</th>
-				<th colspan="1">Kategoriler</th>
-				<th colspan="1">Bütçe aralığı</th>
-				<th colspan="1">Tarih</th>
-			</tr>
-            {% for idea in ideas %}
-                <!-- One Project -->
-                <tr class="title">
-                    <td colspan="2">{{ idea.name|truncatechars:25 }}</td>
-                    <td colspan="1">{{ idea.offerred_brands.all|join:", "|truncatechars:25 }}</td>
-                    <td colspan="1">{{ idea.dealt_brands.all|join:", "|truncatechars:25 }}</td>
-                    <td colspan="1">{{ idea.categories.all|join:", "|truncatechars:25 }}</td>
-                    <td colspan="1">{{ idea.budget.all }}</td>
-                    <td colspan="1">{{ idea.date|date:"d.m.Y" }}</td>
+        <form action="{% url 'pool:cms_idea_multiple_delete' %}" method="post" >{% csrf_token %}
+            <table class="grid">
+                <tr>
+                    <th colspan="2">Fikir adı</th>
+                    <th colspan="1">Sunulan Markalar</th>
+                    <th colspan="1">Satılan Markalar</th>
+                    <th colspan="1">Kategoriler</th>
+                    <th colspan="1">Bütçe aralığı</th>
+                    <th colspan="1">Tarih</th>
                 </tr>
-                <tr class="description">
-                    <td colspan="7">
-                        {% if in_cms %}
-                            <div class="buttons">
-                                <input type="checkbox" id="chck_{{ idea.id }}">
-                                <a href="{% url 'pool:cms_idea_updation' pk=idea.pk %}" title="Güncelle" class="edit"></a>
-                                <a href="{% url 'pool:cms_idea_deletion' pk=idea.pk %}" title="Sil" class="delete"></a>
-                            </div>
-                        <div class="text long admin">
-                        {% else %}
-                        <div class="text long">
-                        {% endif %}
-                            <div class="left">
-                                <span>{{ idea.summary|urlizetrunc:15 }}</span>
-                                <span class="detail">{{ idea.detail|urlize|linebreaksbr }}</span>
-                            </div>
-                            <div class="right">
-                                <a class="expand" title="Proje detayı"></a>
-                                <a class="settings" title=""></a>
-                                <div class="settingsMenu">
-                                    <a href="{% url 'pool:cms_idea_updation' pk=idea.pk %}" class="edit">Fikri düzenle</a>
-                                    <span></span>
-                                    <a href="{% url 'pool:cms_idea_deletion' pk=idea.pk %}" class="delete">Fikri sil</a>
+                {% for idea in ideas %}
+                    <!-- One Project -->
+                    <tr class="title">
+                        <td colspan="2">{{ idea.name|truncatechars:25 }}</td>
+                        <td colspan="1">{{ idea.offerred_brands.all|join:", "|truncatechars:25 }}</td>
+                        <td colspan="1">{{ idea.dealt_brands.all|join:", "|truncatechars:25 }}</td>
+                        <td colspan="1">{{ idea.categories.all|join:", "|truncatechars:25 }}</td>
+                        <td colspan="1">{{ idea.budget.all }}</td>
+                        <td colspan="1">{{ idea.date|date:"d.m.Y" }}</td>
+                    </tr>
+                    <tr class="description">
+                        <td colspan="7">
+                            {% if in_cms %}
+                                <div class="buttons">
+                                    <input type="checkbox" id="chck_{{ idea.id }}" name="idea_id[]" value="{{ idea.id }}">
+                                    <a href="{% url 'pool:cms_idea_updation' pk=idea.pk %}" title="Güncelle" class="edit"></a>
+                                    <a href="{% url 'pool:cms_idea_deletion' pk=idea.pk %}" title="Sil" class="delete"></a>
+                                </div>
+                            <div class="text long admin">
+                            {% else %}
+                            <div class="text long">
+                            {% endif %}
+                                <div class="left">
+                                    <span>{{ idea.summary|urlizetrunc:15 }}</span>
+                                    <span class="detail">{{ idea.detail|urlize|linebreaks }}</span>
+                                </div>
+                                <div class="right">
+                                    <a class="expand" title="Proje detayı"></a>
+                                    <a class="settings" title=""></a>
+                                    <div class="settingsMenu">
+                                        <a href="{% url 'pool:cms_idea_updation' pk=idea.pk %}" class="edit">Fikri düzenle</a>
+                                        <span></span>
+                                        <a href="{% url 'pool:cms_idea_deletion' pk=idea.pk %}" class="delete">Fikri sil</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="space"><td colspan="7"></td></tr>
-			<!-- One Project END -->
-            {% empty %}
-                <tr class="description">
-                    <td colspan="7">
-                        <div class="text long">
-                            No project ideas
-                        </div>
-                    </td>
-                </tr>
-            {% endfor %}
-		</table>
+                        </td>
+                    </tr>
+                    <tr class="space"><td colspan="7"></td></tr>
+                <!-- One Project END -->
+                {% empty %}
+                    <tr class="description">
+                        <td colspan="7">
+                            <div class="text long">
+                                No project ideas
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <input type="submit" href="#" title="" class="roll-back" value="Seçili kategorileri sil" />
+        </form>
 		<!-- Projects END-->
 
 		<!-- Paging -->

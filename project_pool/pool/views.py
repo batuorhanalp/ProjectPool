@@ -146,7 +146,7 @@ class CMSIdeaBase(SuccessMessageMixin):
     template_name = 'pool/cms/idea_creation.html'
 
     def get_success_url(self):
-        return reverse('pool:user_idea_list')
+        return reverse('pool:cms_idea_list')
 
 
 class CMSIdeaCreation(CMSIdeaBase, CreateView):
@@ -162,6 +162,24 @@ class CMSIdeaUpdation(CMSIdeaBase, UpdateView):
     def get_success_message(self, cleaned_data):
         return '%s isimli fikir guncellendi. <a href="%s">geri al</a>' %\
             (cleaned_data['name'], reverse('pool:undo'))
+
+
+@login_required
+@staff_member_required
+@require_http_methods(["POST"])
+def idea_multiple_deletion(request):
+    """
+    delete multiple users at once.
+    get user_id array as request param
+    """
+    # TODO: get ile emin misiniz ekrani yap, post ile sil
+    # if request.method == "POST":
+
+    idea_ids = request.POST.getlist('idea_id[]')
+    ideas = Idea.objects.filter(id__in=idea_ids)
+    for idea in ideas:
+        idea.delete()
+    return redirect("pool:cms_idea_list")
 
 
 class CMSIdeaDeletion(DeleteView):

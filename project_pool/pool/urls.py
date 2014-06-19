@@ -39,6 +39,7 @@ urlpatterns = patterns('pool.views',
     #url(r'^cms/fikir/(?P<pk>[a-zA-Z0-9]+)/$', staff_member_required(IdeaDetail.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_idea_details'),
     url(r'^cms/fikir-guncelle/(?P<pk>[a-zA-Z0-9]+)/$', login_required(CMSIdeaUpdation.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_idea_updation'),
     url(r'^cms/fikir-sil/(?P<pk>[a-zA-Z0-9]+)/$', staff_member_required(CMSIdeaDeletion.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name='cms_idea_deletion'),
+    url(r'^cms/fikir-sil/?$', "idea_multiple_deletion", name="cms_idea_multiple_delete"),
 
     # Brand
     url(r'^cms/markalar/?$', staff_member_required(CMSBrandList.as_view(), redirect_field_name=settings.REDIRECT_FIELD_NAME), name="cms_brand_list"),

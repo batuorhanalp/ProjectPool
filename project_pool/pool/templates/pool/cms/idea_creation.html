@@ -7,13 +7,6 @@
         <div class="inner-wrapper">
             {% include 'pool/cms/common/sub_menu_for_projects.html' with current_sub_page='creation' %}
 
-            <div class="warning">
-                {% if form.errors %}
-                    {% for field in form %}
-                    <span>!</span>{{ field.label_tag }} {{ field.errors }} 
-                    {% endfor %}
-                {% endif %}
-            </div>
     {% if messages %}
     <div class="warning">
         {% for message in messages %}
@@ -21,6 +14,13 @@
         {% endfor %}
     </div>
     {% endif %}
+    {% if form.non_field_errors %}
+    <div class="warning">
+        {% for error in form.non_field_errors %}
+        <span>!</span>{{ error|safe }} 
+        {% endfor %}
+    </div>
+    {% endif %} 
 
             <!-- Add Idea -->
             <form action="" method="POST">{% csrf_token %}
@@ -29,7 +29,7 @@
                         Fikir adı
                     </div>
                     <div class="elements">
-                        {{ form.name }}
+                        {{ form.name }}{{ form.name.errors }}
                     </div>
                 </div>
                 <div class="row">
@@ -37,7 +37,7 @@
                         Fikir özeti
                     </div>
                     <div class="elements">
-                        <textarea id="id_summary" maxlength="255" name="summary">{{ form.summary.value|default_if_none:"" }}</textarea>
+                        <textarea id="id_summary" maxlength="255" name="summary">{{ form.summary.value|default_if_none:"" }}</textarea>{{ form.summary.errors }}
                     </div>
                 </div>
                 <div class="row">
@@ -45,7 +45,7 @@
                         Fikir detayı
                     </div>
                     <div class="elements">
-                        <textarea id="id_detail" name="detail" class="big">{{ form.detail.value|default_if_none:"" }}</textarea>
+                        <textarea id="id_detail" name="detail" class="big">{{ form.detail.value|default_if_none:"" }}</textarea>{{ form.detail.errors }}
                     </div>
                 </div>
                 {% get_brands as brands %}
@@ -60,6 +60,7 @@
                             <label for="chckMar{{ brand.id }}">{{ brand.name }}</label>
                         {% endfor %}
                     </div>
+                    {{ form.offerred_brands.errors }}
                 </div>
                 <div class="row">
                     <div class="title">
@@ -72,6 +73,7 @@
                             <label for="p_chckMar_{{ brand.id }}">{{ brand.name }}</label>
                         {% endfor %}
                     </div>
+                    {{ form.dealt_brands.errors }}
                 </div>
                 {% get_categories as categories %}
                 <div class="row">
@@ -86,6 +88,7 @@
                         {% endfor %}
                     </div>
                 </div>
+                {{ form.categories.errors }}
                 {% get_budgets as budgets %}
                 <div class="row">
                     <div class="title">
@@ -99,6 +102,7 @@
                             {% endfor %}
                         </select>
                     </div>
+                    {{ form.budget.errors }}
                 </div>
                 <div class="row">
                     <div class="title">&nbsp;</div>
