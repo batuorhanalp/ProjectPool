@@ -2,7 +2,7 @@
 Karbonat Fikir Havuzu
 =====================
 
-Explanation will come here
+This is a project where you can store your project ideas and categorize them on budget etc.
 
 Installation
 ============
