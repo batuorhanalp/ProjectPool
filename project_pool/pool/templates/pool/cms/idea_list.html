@@ -32,9 +32,9 @@
                     <!-- One Project -->
                     <tr class="title">
                         <td colspan="2">{{ idea.name|truncatechars:25 }}</td>
-                        <td colspan="1">{{ idea.offerred_brands.all|join:", "|truncatechars:15 }}</td>
-                        <td colspan="1">{{ idea.dealt_brands.all|join:", "|truncatechars:15 }}</td>
-                        <td colspan="1">{{ idea.categories.all|join:", "|truncatechars:15 }}</td>
+                        <td colspan="1" data-id="{{ idea.pk}}_1">{{ idea.offerred_brands.all|join:", "|truncatechars:30 }}</td>
+                        <td colspan="1" data-id="{{ idea.pk}}_2">{{ idea.dealt_brands.all|join:", "|truncatechars:30 }}</td>
+                        <td colspan="1" data-id="{{ idea.pk}}_3">{{ idea.categories.all|join:", "|truncatechars:30 }}</td>
                         <td colspan="1">{{ idea.budget }}</td>
                         <td colspan="1">{{ idea.date|date:"d.m.Y" }}</td>
                     </tr>
