@@ -75,10 +75,11 @@ body.login{background: #ffd018;}
 .grid .title {color:#fff;font-weight: 300;background: #6b6b6b;line-height: 25px;margin-top: 20px; }
 .grid .title td {text-align: left;padding: 6px 0 6px 10px;}
 .grid .description {line-height: 38px;text-align: left;width: 100%;}
-.grid .textcenter{text-align: center;}
+.grid .description.brands {line-height: 38px;text-align: left;width: 301px;display: table-cell;padding-bottom: 15px;float: left;}
 .grid .description .buttons {background: #f8f8f8;width: 23px; min-height: 67px; line-height: 22px; display: block;background: #ffd018;padding-left: 2px; float: left;}
 .grid .description .buttons checkbox, .grid .description .buttons a { width: 20px;height: 22px;display: block;} 
 .grid .description .text { padding: 10px; display: block;float: left;background: #f8f8f8;line-height: 47px;padding-left: 20px;width: 905px;}
+.grid .description .text.brand{width:230px;}
 .grid .description .text.long { border-left: 5px solid #ffd018;width:935px;padding-right:0;padding-bottom: 0;}
 .grid .description .text.long.admin { width:910px;min-height:57px;padding-bottom: :0;padding-top: 2px;}
 .grid .description .text.long .left .detail {display: none;width:100%;}

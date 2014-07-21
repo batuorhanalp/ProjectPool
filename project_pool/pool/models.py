@@ -9,6 +9,9 @@ class Brand(models.Model):
     name = models.CharField("İsim", max_length=64)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['name']
+        
     def __unicode__(self):
         """string representation of the model"""
         return self.name
@@ -20,6 +23,9 @@ class Brand(models.Model):
 class Category(models.Model):
     name = models.CharField("Kategori Adı", max_length=64)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['name']
 
     def __unicode__(self):
         """string representation of the model"""
