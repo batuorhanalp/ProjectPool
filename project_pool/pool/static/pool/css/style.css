@@ -72,9 +72,10 @@ body.login{background: #ffd018;}
 /*Grid*/
 .grid {font-size: 15px;margin-top: 10px;display: block; }
 .grid th {color:#ffd018;font-weight: 600;min-width:160px;line-height:50px; }
-.grid .title {color:#fff;font-weight: 600;background: #6b6b6b;line-height: 65px;margin-top: 20px; }
-.grid .title td {text-align: center;}
+.grid .title {color:#fff;font-weight: 300;background: #6b6b6b;line-height: 25px;margin-top: 20px; }
+.grid .title td {text-align: left;padding-left: 10px;}
 .grid .description {line-height: 38px;text-align: left;width: 100%;}
+.grid .textcenter{text-align: center;}
 .grid .description .buttons {background: #f8f8f8;width: 23px; min-height: 67px; line-height: 22px; display: block;background: #ffd018;padding-left: 2px; float: left;}
 .grid .description .buttons checkbox, .grid .description .buttons a { width: 20px;height: 22px;display: block;} 
 .grid .description .text { padding: 10px; display: block;float: left;background: #f8f8f8;line-height: 47px;padding-left: 20px;width: 905px;}
