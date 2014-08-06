@@ -48,6 +48,8 @@ Bu noktada `project_pool/project_pool/settings/production.py` dosyasindan databa
     source venv/bin/activate
     pip install -r requirements/local.txt 
 
+Eger mysql kullanilmak isteniyorsa `pip install mysql-python` kurulumu yapilmali, baska bir rdbms kullanilmak isteniyorsa onun pip'i kurulmali.
+
 Django ayarlarini yapalim. `syncdb` sirasinda bir admin hesabi olusturalim (yonergeleri izleyin sadece).
 
 	cd project_pool
@@ -61,6 +63,8 @@ Test icin test sunucusunu calistiralim, hata vermemeli
 Simdi django'yu fastcgi ile 8081 portunda calistiralim
 
 	python manage.py runfcgi host=127.0.0.1 port=8081
+
+Burada flup hatasi olursa, `pip install flup`.
 
 Fastcgi'i nginx uzerinden 8283 portunda sunalim. Baska bir port numarasi secileblir ya da 80 portunda bir domain name'de calistirilabilir. Bu nginx configurasyonunu `nginx.conf` ya da `sites-enabled` icinde yeni bir dosya olarak yapablirsiniz. Apache kullanilmak isteniyorsa da buna benzer bir vhost konfigurasyonu yapilmalidir. 
 
