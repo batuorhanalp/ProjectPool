@@ -11,7 +11,7 @@ class Brand(models.Model):
 
     class Meta:
         ordering = ['name']
-        
+
     def __unicode__(self):
         """string representation of the model"""
         return self.name
