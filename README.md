@@ -94,3 +94,5 @@ Fastcgi'i nginx uzerinden 8283 portunda sunalim. Baska bir port numarasi secileb
 `fastcgi`in calistigindan emin olalim. Asagidaki komut sonunda, calisan processler gorulmeli:
 
 	ps ax | grep runfcgi
+
+    [ ![Codeship Status for batuorhanalp/ProjectPool](https://www.codeship.io/projects/0dc15bf0-348a-0132-14ef-2ed00cd927bb/status)](https://www.codeship.io/projects/40790)
